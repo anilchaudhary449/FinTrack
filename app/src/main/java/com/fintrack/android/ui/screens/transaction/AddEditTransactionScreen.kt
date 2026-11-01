@@ -84,7 +84,6 @@ fun AddEditTransactionScreen(
                     else -> 0
                 },
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                shape = MaterialTheme.shapes.medium
             ) {
                 Tab(
                     selected = state.type == TransactionType.EXPENSE,

@@ -5,23 +5,32 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.fintrack.android.R
 import com.fintrack.android.domain.repository.RecurringRepository
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 
-@HiltWorker
-class RecurringTransactionWorker @AssistedInject constructor(
-    @Assisted private val context: Context,
-    @Assisted params: WorkerParameters,
-    private val recurringRepository: RecurringRepository
+class RecurringTransactionWorker(
+    private val context: Context,
+    params: WorkerParameters
 ) : CoroutineWorker(context, params) {
+
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    interface WorkerEntryPoint {
+        fun recurringRepository(): RecurringRepository
+    }
 
     override suspend fun doWork(): Result {
         return try {
+            val entryPoint = EntryPointAccessors.fromApplication(
+                context.applicationContext,
+                WorkerEntryPoint::class.java
+            )
+            val recurringRepository = entryPoint.recurringRepository()
             val processedCount = recurringRepository.processDueRecurringTransactions()
             if (processedCount > 0) {
                 showNotification(processedCount)
@@ -58,4 +67,3 @@ class RecurringTransactionWorker @AssistedInject constructor(
         notificationManager.notify(1001, notification)
     }
 }
-

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.fintrack.android.app-mergeDebugResources-72:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\2a72bb03168603d116394b079c11f640\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

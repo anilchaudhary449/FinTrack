@@ -90,7 +90,7 @@ class ReportsViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val csvData = CsvExporter.exportTransactionsToCsv(_uiState.value.transactions)
+                    val csvData = CsvExporter.exportTransactionsToCsv(uiState.value.transactions)
                     val exportDir = File(context.cacheDir, "exports").apply { mkdirs() }
                     val file = File(exportDir, "FinTrack_Transactions_${System.currentTimeMillis()}.csv")
                     FileOutputStream(file).use { it.write(csvData.toByteArray(Charsets.UTF_8)) }
@@ -112,8 +112,8 @@ class ReportsViewModel @Inject constructor(
                     val html = FinancialStatementGenerator.generateHtmlMonthlyStatement(
                         monthName = monthName,
                         year = now.year,
-                        summary = _uiState.value.summary,
-                        transactions = _uiState.value.transactions.take(100)
+                        summary = uiState.value.summary,
+                        transactions = uiState.value.transactions.take(100)
                     )
 
                     val exportDir = File(context.cacheDir, "exports").apply { mkdirs() }

@@ -15,6 +15,13 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private data class TxFilterState(
+    val query: String,
+    val type: TransactionType?,
+    val accountId: Long?,
+    val categoryId: Long?
+)
+
 data class TransactionListUiState(
     val transactions: List<Transaction> = emptyList(),
     val accounts: List<Account> = emptyList(),
@@ -42,49 +49,56 @@ class TransactionListViewModel @Inject constructor(
     private val _selectedCategoryId = MutableStateFlow<Long?>(null)
 
     val uiState: StateFlow<TransactionListUiState> = combine(
-        transactionRepository.getAllTransactions(),
-        accountRepository.getAllAccounts(),
-        categoryRepository.getAllCategories(),
-        preferencesManager.userPreferencesFlow,
         _searchQuery,
         _selectedType,
         _selectedAccountId,
         _selectedCategoryId
-    ) { txs, accounts, categories, prefs, query, type, accountId, categoryId ->
-        var filtered = txs
+    ) { query, type, accountId, categoryId ->
+        TxFilterState(query, type, accountId, categoryId)
+    }.flatMapLatest { filters ->
+        combine(
+            transactionRepository.getAllTransactions(),
+            accountRepository.getAllAccounts(),
+            categoryRepository.getAllCategories(),
+            preferencesManager.userPreferencesFlow
+        ) { txs, accounts, categories, prefs ->
+            var filtered = txs
 
-        if (query.isNotBlank()) {
-            filtered = filtered.filter {
-                it.notes.contains(query, ignoreCase = true) ||
-                        it.categoryName.contains(query, ignoreCase = true) ||
-                        it.accountName.contains(query, ignoreCase = true) ||
-                        it.amount.toPlainString().contains(query)
+            if (filters.query.isNotBlank()) {
+                filtered = filtered.filter {
+                    it.notes.contains(filters.query, ignoreCase = true) ||
+                            it.categoryName.contains(filters.query, ignoreCase = true) ||
+                            it.accountName.contains(filters.query, ignoreCase = true) ||
+                            it.amount.toPlainString().contains(filters.query)
+                }
             }
-        }
 
-        if (type != null) {
-            filtered = filtered.filter { it.type == type }
-        }
+            if (filters.type != null) {
+                filtered = filtered.filter { it.type == filters.type }
+            }
 
-        if (accountId != null) {
-            filtered = filtered.filter { it.accountId == accountId || it.toAccountId == accountId }
-        }
+            if (filters.accountId != null) {
+                filtered = filtered.filter {
+                    it.accountId == filters.accountId || it.toAccountId == filters.accountId
+                }
+            }
 
-        if (categoryId != null) {
-            filtered = filtered.filter { it.categoryId == categoryId }
-        }
+            if (filters.categoryId != null) {
+                filtered = filtered.filter { it.categoryId == filters.categoryId }
+            }
 
-        TransactionListUiState(
-            transactions = filtered,
-            accounts = accounts,
-            categories = categories,
-            searchQuery = query,
-            selectedType = type,
-            selectedAccountId = accountId,
-            selectedCategoryId = categoryId,
-            defaultCurrency = prefs.defaultCurrency,
-            isBikramSambatEnabled = prefs.isBikramSambatEnabled
-        )
+            TransactionListUiState(
+                transactions = filtered,
+                accounts = accounts,
+                categories = categories,
+                searchQuery = filters.query,
+                selectedType = filters.type,
+                selectedAccountId = filters.accountId,
+                selectedCategoryId = filters.categoryId,
+                defaultCurrency = prefs.defaultCurrency,
+                isBikramSambatEnabled = prefs.isBikramSambatEnabled
+            )
+        }
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
