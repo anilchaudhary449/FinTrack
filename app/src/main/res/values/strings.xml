@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App info -->
+    <string name="app_name">FinTrack</string>
+    <string name="app_tagline">Smart Personal Finance &amp; Expense Management</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_budgets">Budgets</string>
+    <string name="nav_reports">Reports</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_accounts">Accounts</string>
+    <string name="nav_savings">Savings</string>
+    <string name="nav_debts">Debts &amp; Loans</string>
+    <string name="nav_recurring">Recurring</string>
+    <string name="nav_networth">Net Worth</string>
+    <string name="nav_audit">Audit Trail</string>
+    <string name="nav_insights">Insights</string>
+    <string name="nav_reconciliation">Reconciliation</string>
+    <string name="nav_calendar">Calendar</string>
+
+    <!-- Dashboard -->
+    <string name="total_balance">Total Balance</string>
+    <string name="total_income">Total Income</string>
+    <string name="total_expense">Total Expense</string>
+    <string name="net_savings">Net Savings</string>
+    <string name="budget_utilization">Budget Utilization</string>
+    <string name="outstanding_debts">Outstanding Debts</string>
+    <string name="upcoming_bills">Upcoming Bills</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="spending_breakdown">Spending Breakdown</string>
+    <string name="income_vs_expense">Income vs Expense</string>
+    <string name="financial_trends">Financial Trends</string>
+    <string name="see_all">See All</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="add_expense_btn">Add Expense</string>
+    <string name="add_income_btn">Add Income</string>
+    <string name="transfer_btn">Transfer</string>
+
+    <!-- Time Ranges -->
+    <string name="filter_today">Today</string>
+    <string name="filter_this_week">This Week</string>
+    <string name="filter_this_month">This Month</string>
+    <string name="filter_last_month">Last Month</string>
+    <string name="filter_this_year">This Year</string>
+    <string name="filter_custom">Custom Range</string>
+
+    <!-- Transaction form -->
+    <string name="transaction_amount">Amount</string>
+    <string name="transaction_category">Category</string>
+    <string name="transaction_account">Account</string>
+    <string name="transaction_date">Date &amp; Time</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="transaction_notes">Notes (Optional)</string>
+    <string name="receipt_attachment">Receipt Photo</string>
+    <string name="save_transaction">Save Transaction</string>
+    <string name="edit_transaction">Edit Transaction</string>
+    <string name="delete_transaction">Delete Transaction</string>
+    <string name="confirm_delete_msg">Are you sure you want to delete this record? This will revert its impact on your account balance.</string>
+    <string name="transaction_type">Type</string>
+    <string name="type_income">Income</string>
+    <string name="type_expense">Expense</string>
+    <string name="type_transfer">Transfer</string>
+
+    <!-- Accounts -->
+    <string name="account_name">Account Name</string>
+    <string name="account_type">Account Type</string>
+    <string name="opening_balance">Opening Balance</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="account_currency">Currency</string>
+    <string name="source_account">Source Account</string>
+    <string name="target_account">Destination Account</string>
+    <string name="transfer_funds">Transfer Funds</string>
+    <string name="transfer_notes">Transfer Notes</string>
+
+    <!-- Budgets -->
+    <string name="monthly_budget">Monthly Budget</string>
+    <string name="create_budget">Create Budget</string>
+    <string name="budget_limit">Spending Limit</string>
+    <string name="remaining_budget">Remaining</string>
+    <string name="budget_consumed">% Consumed</string>
+    <string name="budget_status_normal">Normal (Under 50%)</string>
+    <string name="budget_status_warning">Warning (Above 80%)</string>
+    <string name="budget_status_exceeded">Budget Exceeded!</string>
+
+    <!-- Savings -->
+    <string name="savings_goals">Savings Goals</string>
+    <string name="create_savings_goal">New Savings Goal</string>
+    <string name="target_amount">Target Amount</string>
+    <string name="saved_amount">Saved Amount</string>
+    <string name="target_date">Target Date</string>
+    <string name="add_contribution">Add Contribution</string>
+    <string name="goal_completed">Goal Completed!</string>
+
+    <!-- Debts & Loans -->
+    <string name="debts_and_loans">Debts &amp; Loans</string>
+    <string name="money_i_owe">Money I Owe (Liabilities)</string>
+    <string name="money_owed_to_me">Money Owed To Me (Assets)</string>
+    <string name="person_name">Person / Institution Name</string>
+    <string name="interest_rate">Interest Rate (%)</string>
+    <string name="due_date">Due Date</string>
+    <string name="record_payment">Record Payment</string>
+    <string name="outstanding_balance">Outstanding</string>
+
+    <!-- Net Worth -->
+    <string name="net_worth">Net Worth</string>
+    <string name="total_assets">Total Assets</string>
+    <string name="total_liabilities">Total Liabilities</string>
+    <string name="net_worth_formula">Net Worth = Total Assets - Total Liabilities</string>
+    <string name="asset_breakdown">Asset Breakdown</string>
+    <string name="liability_breakdown">Liability Breakdown</string>
+
+    <!-- Audit & Reconciliation -->
+    <string name="audit_trail">Financial Audit Trail</string>
+    <string name="audit_immutable_notice">Audit records are immutable and track all modifications and balance adjustments.</string>
+    <string name="account_reconciliation">Account Reconciliation</string>
+    <string name="statement_balance">Actual Statement/Wallet Balance</string>
+    <string name="discrepancy">Discrepancy</string>
+    <string name="reconcile_btn">Reconcile &amp; Record Adjustment</string>
+
+    <!-- Insights -->
+    <string name="spending_insights">Spending Insights</string>
+    <string name="no_insights">Keep recording transactions to generate intelligent financial insights.</string>
+
+    <!-- Backup, Security & Settings -->
+    <string name="backup_restore">Backup &amp; Restore</string>
+    <string name="export_csv">Export CSV</string>
+    <string name="export_pdf">Export Monthly PDF Statement</string>
+    <string name="backup_database">Create Local JSON Backup</string>
+    <string name="restore_database">Restore from Backup</string>
+    <string name="app_security">Security</string>
+    <string name="enable_pin">Enable Application PIN</string>
+    <string name="enable_biometric">Enable Biometric Unlock</string>
+    <string name="currency_settings">Default Currency</string>
+    <string name="nepal_date_display">Display Bikram Sambat (BS) Dates</string>
+    <string name="dark_mode">Dark Theme</string>
+
+    <!-- Actions & Alerts -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="confirm">Confirm</string>
+    <string name="success">Operation completed successfully</string>
+    <string name="error">An error occurred</string>
+    <string name="search_hint">Search transactions, notes, categories...</string>
+    <string name="empty_transactions">No transactions found for the selected period.</string>
+</resources>
+

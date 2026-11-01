@@ -1,0 +1,35 @@
+package com.fintrack.android
+
+import android.app.Application
+import androidx.work.*
+import com.fintrack.android.worker.RecurringTransactionWorker
+import dagger.hilt.android.HiltAndroidApp
+import java.util.concurrent.TimeUnit
+
+@HiltAndroidApp
+class FinTrackApp : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        scheduleRecurringWorker()
+    }
+
+    private fun scheduleRecurringWorker() {
+        val constraints = Constraints.Builder()
+            .setRequiresBatteryNotLow(true)
+            .build()
+
+        val periodicWork = PeriodicWorkRequestBuilder<RecurringTransactionWorker>(
+            12, TimeUnit.HOURS
+        )
+            .setConstraints(constraints)
+            .build()
+
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+            "FinTrackRecurringSync",
+            ExistingPeriodicWorkPolicy.KEEP,
+            periodicWork
+        )
+    }
+}
+

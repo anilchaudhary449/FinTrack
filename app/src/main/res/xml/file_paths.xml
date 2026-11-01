@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-files-path name="fintrack_receipts" path="receipts/" />
+    <files-path name="fintrack_internal_receipts" path="receipts/" />
+    <cache-path name="fintrack_exports" path="exports/" />
+</paths>
+
