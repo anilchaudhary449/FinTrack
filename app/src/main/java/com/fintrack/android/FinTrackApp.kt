@@ -1,17 +1,32 @@
 package com.fintrack.android
 
 import android.app.Application
-import androidx.work.*
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.fintrack.android.worker.RecurringTransactionWorker
 import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @HiltAndroidApp
-class FinTrackApp : Application() {
+class FinTrackApp : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
         scheduleRecurringWorker()
+    }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 
     private fun scheduleRecurringWorker() {
@@ -32,4 +47,3 @@ class FinTrackApp : Application() {
         )
     }
 }
-
