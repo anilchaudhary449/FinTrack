@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fintrack.android.BikramSambatConverterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-02T14:53:02.073Z" hostname="DESKTOP-K6V9G2S" time="0.095">
+  <properties/>
+  <testcase name="gregorian base date converts to 2081 BS" classname="com.fintrack.android.BikramSambatConverterTest" time="0.075"/>
+  <testcase name="nepali numerals convert digits 0 through 9 correctly" classname="com.fintrack.android.BikramSambatConverterTest" time="0.003"/>
+  <testcase name="nepali numerals convert 1234567890 correctly" classname="com.fintrack.android.BikramSambatConverterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

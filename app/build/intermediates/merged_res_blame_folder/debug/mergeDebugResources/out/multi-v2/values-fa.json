@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.fintrack.android.app-mergeDebugResources-72:/values-fa/values-fa.xml",
+            "outputFile": "com.fintrack.android.app-mergeDebugResources-73:/values-fa/values-fa.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\2a72bb03168603d116394b079c11f640\\transformed\\appcompat-1.6.1\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\c2d581a68f9c8085073af6656478a301\\transformed\\appcompat-1.6.1\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\0d413c58193b2b6d696a463480652a1a\\transformed\\ui-release\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\33092e731b39495ba98122c07dc00b60\\transformed\\ui-release\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\b6b2e2e8779d2585975d38644d078493\\transformed\\material3-release\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\08560126f0b94fcb60c5cafab35c1af4\\transformed\\material3-release\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\fc4ac2f94988efb854005c937f15465c\\transformed\\foundation-release\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\c6e54c58144cbce8acef5ac78053027b\\transformed\\foundation-release\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -72,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\5aee69a949f592110e2a885c4ca3fe91\\transformed\\biometric-1.2.0-alpha05\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\d1860715485e6d0d7d1ef5ea2b69b75d\\transformed\\biometric-1.2.0-alpha05\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -89,7 +89,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\5a34f7768d34f0802dd68dd5e765317e\\transformed\\core-1.15.0\\res\\values-fa\\values-fa.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\5a7b060b761d02fcf3674c65bfb8458c\\transformed\\core-1.15.0\\res\\values-fa\\values-fa.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

@@ -66,7 +66,9 @@ fun FinTrackTheme(
         SideEffect {
             val window = (view.context as? Activity)?.window
             window?.let {
+                @Suppress("DEPRECATION")
                 it.statusBarColor = colorScheme.background.toArgb()
+                @Suppress("DEPRECATION")
                 it.navigationBarColor = colorScheme.background.toArgb()
                 val controller = WindowCompat.getInsetsController(it, view)
                 controller.isAppearanceLightStatusBars = !darkTheme

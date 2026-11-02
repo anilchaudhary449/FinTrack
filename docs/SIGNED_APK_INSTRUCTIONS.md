@@ -2,7 +2,7 @@
 
 ## 1. Prerequisites
 - Android Studio Ladybug / Meerkat or AGP 8.7+ installed
-- JDK 17 or higher configured (`JAVA_HOME`)
+- JDK 17 configured (`JAVA_HOME`); the current Android Lint toolchain cannot parse JDK 25 version strings
 - Android SDK Platform 35 installed
 
 ---
@@ -20,8 +20,8 @@ Follow the interactive prompts:
 
 ---
 
-## 3. Configuring Keystore in Gradle
-For production security, do **NOT** commit raw passwords into version control. Create a `keystore.properties` file in your project root (which is excluded in `.gitignore`):
+## 3. Configure the Release Keystore
+Do **NOT** commit the keystore or passwords into version control. Create a `keystore.properties` file in the project root (it is excluded in `.gitignore`):
 
 ```properties
 # keystore.properties
@@ -31,40 +31,7 @@ keyAlias=fintrack_key
 keyPassword=YOUR_SECURE_KEY_PASSWORD
 ```
 
-Then in `app/build.gradle.kts`:
-```kotlin
-val keystorePropertiesFile = rootProject.file("keystore.properties")
-val keystoreProperties = java.util.Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(java.io.FileInputStream(keystorePropertiesFile))
-}
-
-android {
-    ...
-    signingConfigs {
-        create("release") {
-            if (keystorePropertiesFile.exists()) {
-                storeFile = file(keystoreProperties.getProperty("storeFile"))
-                storePassword = keystoreProperties.getProperty("storePassword")
-                keyAlias = keystoreProperties.getProperty("keyAlias")
-                keyPassword = keystoreProperties.getProperty("keyPassword")
-            }
-        }
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-}
-```
+The Gradle build reads this file automatically. If it is absent, release builds use the debug key for local device testing; that APK must **not** be uploaded to Google Play. A release keystore is required for Play Store distribution, and the same key must be retained for future updates.
 
 ---
 

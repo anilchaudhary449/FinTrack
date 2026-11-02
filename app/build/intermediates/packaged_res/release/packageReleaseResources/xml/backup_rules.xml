@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- By default exclude database to avoid leaking financial history to unencrypted backups -->
+    <exclude domain="database" path="fintrack.db" />
+</full-backup-content>
+
