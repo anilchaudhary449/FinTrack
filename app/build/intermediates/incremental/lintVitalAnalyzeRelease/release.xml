@@ -8,7 +8,7 @@
     mergedManifest="build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml"
     proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.7.2;proguard-rules.pro"
     partialResultsDir="build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
-    desugaredMethodsFiles="C:\Users\anilb\.gradle\caches\9.7.1\transforms\27835e529deea1dc61ff05f3829b349d\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\anilb\.gradle\caches\8.9\transforms\9a0afdb83e4d9d09a81f3cfba8c7bdee\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -28,6 +28,6 @@
       applicationId="com.fintrack.android"
       generatedSourceFolders="build\generated\ksp\release\java;build\generated\ksp\release\kotlin;build\generated\ap_generated_sources\release\out;build\generated\source\buildConfig\release"
       generatedResourceFolders="build\generated\res\resValues\release"
-      desugaredMethodsFiles="C:\Users\anilb\.gradle\caches\9.7.1\transforms\27835e529deea1dc61ff05f3829b349d\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\anilb\.gradle\caches\8.9\transforms\9a0afdb83e4d9d09a81f3cfba8c7bdee\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

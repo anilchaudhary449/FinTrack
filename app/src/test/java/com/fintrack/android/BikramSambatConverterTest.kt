@@ -31,5 +31,25 @@ class BikramSambatConverterTest {
         assertTrue(bsString.contains("2081 BS"))
         assertTrue(bsString.contains("Baisakh"))
     }
+
+    @Test
+    fun `date conversion exposes day and month for dual calendar display`() {
+        val converted = BikramSambatConverter.toBikramSambatDate(LocalDate.of(2024, 4, 13))
+
+        assertEquals(2081, converted.year)
+        assertEquals(1, converted.month)
+        assertEquals(1, converted.day)
+        assertEquals("1 Baisakh 2081 BS", BikramSambatConverter.format(converted))
+    }
+
+    @Test
+    fun `modern calendar conversion uses year-specific month lengths`() {
+        val converted = BikramSambatConverter.toBikramSambatDate(LocalDate.of(2026, 11, 26))
+
+        assertEquals(2083, converted.year)
+        assertEquals(8, converted.month)
+        assertEquals(10, converted.day)
+        assertEquals("10 Mangsir 2083 BS", BikramSambatConverter.format(converted))
+    }
 }
 

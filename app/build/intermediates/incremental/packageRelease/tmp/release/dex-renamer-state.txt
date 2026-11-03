@@ -1,4 +1,4 @@
-#Mon Nov 02 20:58:49 GMT+05:45 2026
+#Mon Nov 02 23:08:13 NPT 2026
 base.0=D\:\\FinTrack-1\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-path.0=classes.dex
 renamed.0=classes.dex
+path.0=classes.dex

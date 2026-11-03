@@ -38,13 +38,35 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Մուտքային զանգի զտում"</string>
     <string msgid="406453423630273620" name="close_drawer">"Փակել նավիգացիայի ընտրացանկը"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Փակել թերթը"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Միացնել</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s հավելվածը չի աշխատի մինչև չմիացնեք Google Play ծառայությունները:</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Միացնել Google Play ծառայությունները</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Տեղադրել</string>
+    <string name="common_google_play_services_install_text">%1$s հավելվածը չի աշխատի առանց Google Play ծառայությունների, որոնք չկան ձեր սարքում:</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Տեղադրել Google Play ծառայությունները</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play ծառայությունների հասանելիություն</string>
+    <string name="common_google_play_services_notification_ticker">Google Play ծառայությունների սխալ կա</string>
+    <string name="common_google_play_services_unknown_issue">%1$s հավելվածը Google Play ծառայությունների հետ կապված խնդիր ունի: Փորձեք նորից:</string>
+    <string name="common_google_play_services_unsupported_text">%1$s հավելվածը չի աշխատի առանց Google Play ծառայությունների, որոնք ձեր սարքում չեն աջակցվում:</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Թարմացնել</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s հավելվածը չի աշխատի մինչև չթարմացնեք Google Play ծառայությունները:</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Թարմացնել Google Play ծառայությունները</string>
+    <string name="common_google_play_services_updating_text">%1$s հավելվածը չի աշխատի առանց Google Play ծառայությունների, որոնք այս պահին թարմացվում են:</string>
+    <string name="common_google_play_services_wear_update_text">Անհրաժեշտ է Google Play ծառայությունների նոր տարբերակը: Այն շուտով կթարմացվի ավտոմատ կերպով:</string>
+    <string name="common_open_on_phone">Բացել հեռախոսով</string>
+    <string name="common_signin_button_text">Մուտք գործել</string>
+    <string name="common_signin_button_text_long">Մուտք գործել Google-ով</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"Օգտագործել գաղտնաբառ"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Հղումը պատճենվեց սեղմատախտակին"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Սխալ ներածում"</string>
     <string msgid="4776854077120974966" name="default_error_msg">"Անհայտ սխալ"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Ելնող պատուհան"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Իջնող ցանկ"</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"Շարունակելու համար օգտագործեք դեմքի նույնականացումը կամ էկրանի կողպումը"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"Շարունակելու համար օգտագործեք դեմքի նույնականացումը"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Պատճենել հղումը"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Բացել դիտարկիչում"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Կիսվել հղումով"</string>
     <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Մատնահետքի պատկերակ"</string>
     <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Հպեք մատնահետքի սկաներին"</string>
     <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Մատնահետքերի սարքն անհասանելի է:"</string>
@@ -117,10 +139,31 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Ցուցադրել հուշում"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Հուշակ"</string>
+    <string name="native_body">Հիմնական տեքստ</string>
+    <string name="native_headline">Վերնագիր</string>
+    <string name="native_media_view">Մեդիա տեսք</string>
     <string msgid="542007171693138492" name="navigation_menu">"Նավիգացիայի ընտրացանկ"</string>
     <string msgid="6610465462668679431" name="not_selected">"Ընտրված չէ"</string>
+    <string name="notifications_permission_confirm">Թույլատրել</string>
+    <string name="notifications_permission_decline">Չթույլատրել</string>
+    <string name="notifications_permission_title">Թույլատրե՞լ հավելվածին, որ ձեզ ծանուցումներ ուղարկի։</string>
+    <string name="offline_dialog_image_description">Պատկերակ</string>
+    <string name="offline_dialog_text">Շնորհակալություն հետաքրքրություն ցուցաբերելու համար։\nՄենք ձեզ հետ լրացուցիչ տեղեկություններով կկիսվենք, հենց որ նորից միանաք ցանցին։</string>
+    <string name="offline_notification_title">Դուք նորից առցանց եք։ Շարունակեք այն պահից, որտեղ կանգ էիք առել</string>
+    <string name="offline_notification_title_with_advertiser">Դուք նորից առցանց եք։ Շարունակեք ծանոթանալ %s-ին</string>
+    <string name="offline_opt_in_confirm">Եղավ</string>
+    <string name="offline_opt_in_decline">Ոչ, շնորհակալություն</string>
+    <string name="offline_opt_in_message">Դուք կստանաք ծանուցում՝ գովազդատուի կայքի հղումով։</string>
+    <string name="offline_opt_in_title">Բացեք հայտարարությունը, երբ նորից միանաք ցանցին։</string>
     <string msgid="5941395253238309765" name="range_end">"Ընդգրկույթի վերջ"</string>
     <string msgid="7097486360902471446" name="range_start">"Ընդգրկույթի սկիզբ"</string>
+    <string name="s1">Պահել պատկերը</string>
+    <string name="s2">Թույլատրե՞լ Գովազդին պահել պատկերը Պատկերասրահում:</string>
+    <string name="s3">Ընդունել</string>
+    <string name="s4">Մերժել</string>
+    <string name="s5">Ստեղծել օրացույցի միջոցառում</string>
+    <string name="s6">Թույլատրե՞լ Գովազդին ստեղծել օրացույցի միջոցառում:</string>
+    <string name="s7">Փորձարկել գովազդը</string>
     <string msgid="5659570757430909869" name="screen_lock_prompt_message">"Շարունակելու համար ապակողպեք էկրանը"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Որոնել"</string>
     <string msgid="6043586758067023" name="selected">"Ընտրված է"</string>
@@ -140,4 +183,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"Օգտագործել մատնահետք"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Օգտագործել մատնահետք կամ էկրանի կողպում"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"Էկրանի կողպում"</string>
+    <string name="watermark_label_prefix">AdMob – </string>
 </resources>

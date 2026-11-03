@@ -2,10 +2,13 @@ package com.fintrack.android.ui.screens.account
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fintrack.android.data.preferences.UserPreferencesManager
 import com.fintrack.android.domain.model.Account
 import com.fintrack.android.domain.model.AccountType
 import com.fintrack.android.domain.repository.AccountRepository
+import com.fintrack.android.domain.repository.ExchangeRateRepository
 import com.fintrack.android.domain.repository.ReconciliationRepository
+import kotlinx.coroutines.flow.combine
 import com.fintrack.android.domain.usecase.TransferFundsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,18 +22,22 @@ import javax.inject.Inject
 data class AccountUiState(
     val accounts: List<Account> = emptyList(),
     val totalBalance: BigDecimal = BigDecimal.ZERO,
+    val displayCurrency: String = "NPR",
     val isAddAccountOpen: Boolean = false,
     val isTransferOpen: Boolean = false,
     val isReconcileOpen: Boolean = false,
     val selectedAccountForReconcile: Account? = null,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val successMessage: String? = null
 )
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     private val accountRepository: AccountRepository,
     private val reconciliationRepository: ReconciliationRepository,
-    private val transferFundsUseCase: TransferFundsUseCase
+    private val transferFundsUseCase: TransferFundsUseCase,
+    private val preferencesManager: UserPreferencesManager,
+    private val exchangeRateRepository: ExchangeRateRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AccountUiState())
@@ -38,13 +45,29 @@ class AccountViewModel @Inject constructor(
 
     init {
         loadAccounts()
+        viewModelScope.launch { exchangeRateRepository.refreshIfStale() }
     }
 
     private fun loadAccounts() {
         viewModelScope.launch {
-            accountRepository.getAllAccounts().collect { list ->
-                val total = list.fold(BigDecimal.ZERO) { acc, a -> acc.add(a.currentBalance) }
-                _uiState.update { it.copy(accounts = list, totalBalance = total) }
+            combine(
+                accountRepository.getAllAccounts(),
+                preferencesManager.userPreferencesFlow,
+                exchangeRateRepository.snapshot
+            ) { accounts, preferences, rates ->
+                val total = accounts.fold(BigDecimal.ZERO) { acc, account ->
+                    val converted = rates?.convert(
+                        account.currentBalance,
+                        account.currency,
+                        preferences.defaultCurrency
+                    ) ?: account.currentBalance
+                    acc.add(converted)
+                }
+                Triple(accounts, total, preferences.defaultCurrency)
+            }.collect { (accounts, total, currency) ->
+                _uiState.update {
+                    it.copy(accounts = accounts, totalBalance = total, displayCurrency = currency)
+                }
             }
         }
     }
@@ -70,17 +93,23 @@ class AccountViewModel @Inject constructor(
 
     fun createAccount(name: String, type: AccountType, openingBalance: BigDecimal, currency: String, desc: String) {
         viewModelScope.launch {
-            accountRepository.createAccount(
-                Account(
-                    name = name,
-                    type = type,
-                    openingBalance = openingBalance,
-                    currentBalance = openingBalance,
-                    currency = currency,
-                    description = desc
+            runCatching {
+                accountRepository.createAccount(
+                    Account(
+                        name = name,
+                        type = type,
+                        openingBalance = openingBalance,
+                        currentBalance = openingBalance,
+                        currency = currency,
+                        description = desc
+                    )
                 )
-            )
-            closeAddAccount()
+            }.onSuccess {
+                _uiState.update { it.copy(successMessage = "Account created", errorMessage = null) }
+                closeAddAccount()
+            }.onFailure { error ->
+                _uiState.update { it.copy(errorMessage = error.message ?: "Could not create account") }
+            }
         }
     }
 
@@ -88,9 +117,10 @@ class AccountViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 transferFundsUseCase(fromId, toId, amount, notes)
+                _uiState.update { it.copy(successMessage = "Transfer completed", errorMessage = null) }
                 closeTransfer()
             } catch (e: Exception) {
-                _uiState.update { it.copy(errorMessage = e.message) }
+                _uiState.update { it.copy(errorMessage = e.message ?: "Transfer failed") }
             }
         }
     }
@@ -100,9 +130,10 @@ class AccountViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 reconciliationRepository.reconcileAccount(account.id, actualBalance, notes)
+                _uiState.update { it.copy(successMessage = "Account reconciled", errorMessage = null) }
                 closeReconciliation()
             } catch (e: Exception) {
-                _uiState.update { it.copy(errorMessage = e.message) }
+                _uiState.update { it.copy(errorMessage = e.message ?: "Reconciliation failed") }
             }
         }
     }

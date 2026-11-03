@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.fintrack.android.domain.util.CurrencyFormatter
+import com.fintrack.android.domain.util.BikramSambatConverter
 import com.fintrack.android.ui.components.FinCard
 import com.fintrack.android.ui.components.FinEmptyState
 import com.fintrack.android.ui.components.FinTopBar
@@ -46,7 +47,16 @@ fun CalendarScreen(
     val state by viewModel.uiState.collectAsState()
 
     val monthYearTitle = DateTimeFormatter.ofPattern("MMMM yyyy").format(state.currentYearMonth)
-    val selectedDateTitle = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy").format(state.selectedDate)
+    val monthStartBs = BikramSambatConverter.toBikramSambatDate(state.currentYearMonth)
+    val monthEndBs = BikramSambatConverter.toBikramSambatDate(
+        state.currentYearMonth.withDayOfMonth(state.currentYearMonth.lengthOfMonth())
+    )
+    val bsMonthTitle = if (monthStartBs.month == monthEndBs.month && monthStartBs.year == monthEndBs.year) {
+        "${monthStartBs.monthName} ${monthStartBs.year} BS"
+    } else {
+        "${monthStartBs.monthName} ${monthStartBs.year} - ${monthEndBs.monthName} ${monthEndBs.year} BS"
+    }
+    val selectedDateTitle = "${DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy 'AD'").format(state.selectedDate)} | ${BikramSambatConverter.format(BikramSambatConverter.toBikramSambatDate(state.selectedDate))}"
 
     Scaffold(
         topBar = {
@@ -72,13 +82,37 @@ fun CalendarScreen(
                 IconButton(onClick = { viewModel.onPreviousMonth() }) {
                     Icon(Icons.Default.ChevronLeft, contentDescription = "Previous Month")
                 }
-                Text(
-                    text = monthYearTitle,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = "$monthYearTitle AD",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = bsMonthTitle,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
                 IconButton(onClick = { viewModel.onNextMonth() }) {
                     Icon(Icons.Default.ChevronRight, contentDescription = "Next Month")
+                }
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun").forEach { weekday ->
+                    Text(
+                        text = weekday,
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
 
@@ -90,6 +124,10 @@ fun CalendarScreen(
                     .height(280.dp)
                     .padding(horizontal = 12.dp)
             ) {
+                val leadingDays = state.daysInMonth.firstOrNull()?.date?.dayOfWeek?.value?.minus(1) ?: 0
+                items((0 until leadingDays).toList()) {
+                    Spacer(modifier = Modifier.aspectRatio(1f))
+                }
                 items(state.daysInMonth) { day ->
                     val isSelected = day.date == state.selectedDate
                     Box(
@@ -115,7 +153,12 @@ fun CalendarScreen(
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
                             )
-                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = "${BikramSambatConverter.toBikramSambatDate(day.date).day}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Spacer(modifier = Modifier.height(1.dp))
                             Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                                 if (day.totalExpense > BigDecimal.ZERO) {
                                     Box(modifier = Modifier.size(5.dp).background(ExpenseRed, CircleShape))

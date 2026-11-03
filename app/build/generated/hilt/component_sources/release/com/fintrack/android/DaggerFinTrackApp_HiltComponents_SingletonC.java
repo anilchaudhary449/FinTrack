@@ -448,85 +448,85 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
-
-      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
-
       static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
-
-      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
-
-      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
-
-      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
-
-      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
-
-      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
-
-      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
 
       static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
 
-      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
-
-      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
-
-      static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
+      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
 
       static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
 
+      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
+
+      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
+
+      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
+
+      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
+
       static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
+
+      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
+
+      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
+
+      static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
+
+      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionListViewModel = "com.fintrack.android.ui.screens.transaction.TransactionListViewModel";
 
-      @KeepFieldType
-      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
+      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
 
-      @KeepFieldType
-      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
+      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
 
       @KeepFieldType
       DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
 
       @KeepFieldType
-      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
-
-      @KeepFieldType
-      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
-
-      @KeepFieldType
-      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
-
-      @KeepFieldType
-      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
+      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
 
       @KeepFieldType
       OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
 
       @KeepFieldType
-      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
-
-      @KeepFieldType
-      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
+      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
 
       @KeepFieldType
       InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
 
       @KeepFieldType
-      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
 
       @KeepFieldType
-      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
+      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
 
       @KeepFieldType
-      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
+      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
 
       @KeepFieldType
       SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
 
       @KeepFieldType
+      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
+
+      @KeepFieldType
+      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
+
+      @KeepFieldType
+      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
+
+      @KeepFieldType
+      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
+
+      @KeepFieldType
       TransactionListViewModel com_fintrack_android_ui_screens_transaction_TransactionListViewModel2;
+
+      @KeepFieldType
+      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+
+      @KeepFieldType
+      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
     }
   }
 
@@ -630,43 +630,46 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
+      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
 
-      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
+      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
+
+      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionListViewModel = "com.fintrack.android.ui.screens.transaction.TransactionListViewModel";
 
       static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
 
-      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
-
       static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
-
-      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
-
-      static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
-
-      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
-
-      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
-
-      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
-
-      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
-
-      static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
-
-      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
 
       static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
 
-      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
+      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
+
+      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
+
+      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
+
+      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
+
+      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
+
+      static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
+
+      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
+
+      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
+
+      static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
+
+      @KeepFieldType
+      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+
+      @KeepFieldType
+      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
 
       @KeepFieldType
       ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
-
-      @KeepFieldType
-      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
 
       @KeepFieldType
       TransactionListViewModel com_fintrack_android_ui_screens_transaction_TransactionListViewModel2;
@@ -675,40 +678,37 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
 
       @KeepFieldType
-      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
-
-      @KeepFieldType
       SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
-
-      @KeepFieldType
-      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
-
-      @KeepFieldType
-      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
-
-      @KeepFieldType
-      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
-
-      @KeepFieldType
-      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
-
-      @KeepFieldType
-      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
-
-      @KeepFieldType
-      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
-
-      @KeepFieldType
-      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
-
-      @KeepFieldType
-      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
 
       @KeepFieldType
       DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
 
       @KeepFieldType
-      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
+
+      @KeepFieldType
+      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
+
+      @KeepFieldType
+      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
+
+      @KeepFieldType
+      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
+
+      @KeepFieldType
+      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
+
+      @KeepFieldType
+      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
+
+      @KeepFieldType
+      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
+
+      @KeepFieldType
+      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
+
+      @KeepFieldType
+      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {

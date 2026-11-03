@@ -1,6 +1,7 @@
 package com.fintrack.android.ui.screens.dashboard;
 
 import com.fintrack.android.data.preferences.UserPreferencesManager;
+import com.fintrack.android.domain.repository.ExchangeRateRepository;
 import com.fintrack.android.domain.repository.TransactionRepository;
 import com.fintrack.android.domain.usecase.CalculateNetWorthUseCase;
 import com.fintrack.android.domain.usecase.GetDashboardSummaryUseCase;
@@ -34,34 +35,40 @@ public final class DashboardViewModel_Factory implements Factory<DashboardViewMo
 
   private final Provider<UserPreferencesManager> preferencesManagerProvider;
 
+  private final Provider<ExchangeRateRepository> exchangeRateRepositoryProvider;
+
   public DashboardViewModel_Factory(
       Provider<GetDashboardSummaryUseCase> getDashboardSummaryUseCaseProvider,
       Provider<CalculateNetWorthUseCase> calculateNetWorthUseCaseProvider,
       Provider<TransactionRepository> transactionRepositoryProvider,
-      Provider<UserPreferencesManager> preferencesManagerProvider) {
+      Provider<UserPreferencesManager> preferencesManagerProvider,
+      Provider<ExchangeRateRepository> exchangeRateRepositoryProvider) {
     this.getDashboardSummaryUseCaseProvider = getDashboardSummaryUseCaseProvider;
     this.calculateNetWorthUseCaseProvider = calculateNetWorthUseCaseProvider;
     this.transactionRepositoryProvider = transactionRepositoryProvider;
     this.preferencesManagerProvider = preferencesManagerProvider;
+    this.exchangeRateRepositoryProvider = exchangeRateRepositoryProvider;
   }
 
   @Override
   public DashboardViewModel get() {
-    return newInstance(getDashboardSummaryUseCaseProvider.get(), calculateNetWorthUseCaseProvider.get(), transactionRepositoryProvider.get(), preferencesManagerProvider.get());
+    return newInstance(getDashboardSummaryUseCaseProvider.get(), calculateNetWorthUseCaseProvider.get(), transactionRepositoryProvider.get(), preferencesManagerProvider.get(), exchangeRateRepositoryProvider.get());
   }
 
   public static DashboardViewModel_Factory create(
       Provider<GetDashboardSummaryUseCase> getDashboardSummaryUseCaseProvider,
       Provider<CalculateNetWorthUseCase> calculateNetWorthUseCaseProvider,
       Provider<TransactionRepository> transactionRepositoryProvider,
-      Provider<UserPreferencesManager> preferencesManagerProvider) {
-    return new DashboardViewModel_Factory(getDashboardSummaryUseCaseProvider, calculateNetWorthUseCaseProvider, transactionRepositoryProvider, preferencesManagerProvider);
+      Provider<UserPreferencesManager> preferencesManagerProvider,
+      Provider<ExchangeRateRepository> exchangeRateRepositoryProvider) {
+    return new DashboardViewModel_Factory(getDashboardSummaryUseCaseProvider, calculateNetWorthUseCaseProvider, transactionRepositoryProvider, preferencesManagerProvider, exchangeRateRepositoryProvider);
   }
 
   public static DashboardViewModel newInstance(
       GetDashboardSummaryUseCase getDashboardSummaryUseCase,
       CalculateNetWorthUseCase calculateNetWorthUseCase,
-      TransactionRepository transactionRepository, UserPreferencesManager preferencesManager) {
-    return new DashboardViewModel(getDashboardSummaryUseCase, calculateNetWorthUseCase, transactionRepository, preferencesManager);
+      TransactionRepository transactionRepository, UserPreferencesManager preferencesManager,
+      ExchangeRateRepository exchangeRateRepository) {
+    return new DashboardViewModel(getDashboardSummaryUseCase, calculateNetWorthUseCase, transactionRepository, preferencesManager, exchangeRateRepository);
   }
 }

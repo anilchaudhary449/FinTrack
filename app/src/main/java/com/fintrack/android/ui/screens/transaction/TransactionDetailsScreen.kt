@@ -18,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import coil.compose.AsyncImage
+import android.net.Uri
 import com.fintrack.android.domain.model.Transaction
 import com.fintrack.android.domain.model.TransactionType
 import com.fintrack.android.domain.repository.TransactionRepository
@@ -30,6 +30,8 @@ import com.fintrack.android.ui.components.FinTopBar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.ZoneId
@@ -44,23 +46,12 @@ class TransactionDetailsViewModel @Inject constructor(
 
     private val transactionId: Long = savedStateHandle.get<Long>("id") ?: -1L
 
-    private val _transaction = MutableStateFlow<Transaction?>(null)
-    val transaction: StateFlow<Transaction?> = _transaction
+    val transaction: StateFlow<Transaction?> = transactionRepository
+        .observeTransactionById(transactionId)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
     private val _isDeleted = MutableStateFlow(false)
     val isDeleted: StateFlow<Boolean> = _isDeleted
-
-    init {
-        loadTransaction()
-    }
-
-    private fun loadTransaction() {
-        if (transactionId > 0) {
-            viewModelScope.launch {
-                _transaction.value = transactionRepository.getTransactionById(transactionId)
-            }
-        }
-    }
 
     fun deleteTransaction() {
         if (transactionId > 0) {
@@ -175,14 +166,12 @@ fun TransactionDetailsScreen(
                             fontWeight = FontWeight.Bold
                         )
                         Spacer(modifier = Modifier.height(12.dp))
-                        AsyncImage(
-                            model = item.receiptUri,
-                            contentDescription = "Receipt Attachment",
+                        ReceiptPreview(
+                            uri = Uri.parse(item.receiptUri),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(260.dp)
-                                .clip(MaterialTheme.shapes.medium),
-                            contentScale = ContentScale.Crop
+                                .clip(MaterialTheme.shapes.medium)
                         )
                     }
                 }

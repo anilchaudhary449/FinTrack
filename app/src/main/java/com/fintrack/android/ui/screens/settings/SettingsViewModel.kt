@@ -7,6 +7,8 @@ import com.fintrack.android.data.export.JsonBackupManager
 import com.fintrack.android.data.preferences.ThemeMode
 import com.fintrack.android.data.preferences.UserPreferences
 import com.fintrack.android.data.preferences.UserPreferencesManager
+import com.fintrack.android.data.security.PinSecurity
+import com.fintrack.android.domain.repository.ExchangeRateRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -25,7 +27,8 @@ data class SettingsUiState(
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val preferencesManager: UserPreferencesManager,
-    private val jsonBackupManager: JsonBackupManager
+    private val jsonBackupManager: JsonBackupManager,
+    private val exchangeRateRepository: ExchangeRateRepository
 ) : ViewModel() {
 
     private val _message = MutableStateFlow<String?>(null)
@@ -50,6 +53,7 @@ class SettingsViewModel @Inject constructor(
     fun onCurrencyChange(currency: String) {
         viewModelScope.launch {
             preferencesManager.setDefaultCurrency(currency)
+            runCatching { exchangeRateRepository.refreshIfStale() }
         }
     }
 
@@ -68,6 +72,32 @@ class SettingsViewModel @Inject constructor(
     fun onBiometricToggle(enabled: Boolean) {
         viewModelScope.launch {
             preferencesManager.setBiometricEnabled(enabled)
+        }
+    }
+
+    fun savePin(pin: String, confirmation: String) {
+        if (!PinSecurity.isValidPin(pin)) {
+            _error.value = "PIN must be 4 to 8 digits"
+            return
+        }
+        if (pin != confirmation) {
+            _error.value = "PINs do not match"
+            return
+        }
+
+        viewModelScope.launch {
+            val hashedPin = withContext(Dispatchers.Default) { PinSecurity.hash(pin) }
+            preferencesManager.setPin(hashedPin)
+            _message.value = "PIN unlock enabled"
+            _error.value = null
+        }
+    }
+
+    fun removePin() {
+        viewModelScope.launch {
+            preferencesManager.disablePin()
+            _message.value = "PIN unlock disabled"
+            _error.value = null
         }
     }
 

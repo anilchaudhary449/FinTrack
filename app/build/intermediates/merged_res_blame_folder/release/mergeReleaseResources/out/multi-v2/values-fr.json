@@ -4,7 +4,24 @@
             "outputFile": "com.fintrack.android.app-mergeReleaseResources-69:/values-fr/values-fr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\c2d581a68f9c8085073af6656478a301\\transformed\\appcompat-1.6.1\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\941ba87f6d757a214d78e6c50f76b6b4\\transformed\\core-1.15.0\\res\\values-fr\\values-fr.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,255,354,456,560,664,782",
+                        "endColumns": "97,101,98,101,103,103,117,100",
+                        "endOffsets": "148,250,349,451,555,659,777,878"
+                    },
+                    "to": {
+                        "startLines": "31,32,33,34,35,36,37,129",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "3133,3231,3333,3432,3534,3638,3742,14147",
+                        "endColumns": "97,101,98,101,103,103,117,100",
+                        "endOffsets": "3226,3328,3427,3529,3633,3737,3855,14243"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\abf242c339ef7aa485b6e181cf53ebc2\\transformed\\appcompat-1.6.1\\res\\values-fr\\values-fr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\d1860715485e6d0d7d1ef5ea2b69b75d\\transformed\\biometric-1.2.0-alpha05\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\1b45a34161c911be7da0d19457237e5e\\transformed\\biometric-1.2.0-alpha05\\res\\values-fr\\values-fr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\c6e54c58144cbce8acef5ac78053027b\\transformed\\foundation-release\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\3dbc71ce96e782b6a0a4c43d81178886\\transformed\\foundation-release\\res\\values-fr\\values-fr.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -55,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\33092e731b39495ba98122c07dc00b60\\transformed\\ui-release\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\65963da13c600711a3f661432ca5e40d\\transformed\\ui-release\\res\\values-fr\\values-fr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,7 +89,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\08560126f0b94fcb60c5cafab35c1af4\\transformed\\material3-release\\res\\values-fr\\values-fr.xml",
+                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\e945b0eb9e18dd1dbfb185d427b5b9b7\\transformed\\material3-release\\res\\values-fr\\values-fr.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -86,23 +103,6 @@
                         "startOffsets": "6853,6973,7091,7213,7334,7433,7527,7639,7783,7902,8049,8133,8233,8334,8435,8556,8683,8788,8938,9084,9214,9406,9532,9650,9773,9906,10008,10113,10237,10362,10464,10571,10676,10821,10973,11082,11191,11278,11371,11466,11586,11677,11763,11870,11950,12035,12137,12249,12347,12447,12535,12651,12752,12855,12987,13067,13177",
                         "endColumns": "119,117,121,120,98,93,111,143,118,146,83,99,100,100,120,126,104,149,145,129,191,125,117,122,132,101,104,123,124,101,106,104,144,151,108,108,86,92,94,119,90,85,106,79,84,101,111,97,99,87,115,100,102,131,79,109,97",
                         "endOffsets": "6968,7086,7208,7329,7428,7522,7634,7778,7897,8044,8128,8228,8329,8430,8551,8678,8783,8933,9079,9209,9401,9527,9645,9768,9901,10003,10108,10232,10357,10459,10566,10671,10816,10968,11077,11186,11273,11366,11461,11581,11672,11758,11865,11945,12030,12132,12244,12342,12442,12530,12646,12747,12850,12982,13062,13172,13270"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\9.7.1\\transforms\\5a7b060b761d02fcf3674c65bfb8458c\\transformed\\core-1.15.0\\res\\values-fr\\values-fr.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,153,255,354,456,560,664,782",
-                        "endColumns": "97,101,98,101,103,103,117,100",
-                        "endOffsets": "148,250,349,451,555,659,777,878"
-                    },
-                    "to": {
-                        "startLines": "31,32,33,34,35,36,37,129",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "3133,3231,3333,3432,3534,3638,3742,14147",
-                        "endColumns": "97,101,98,101,103,103,117,100",
-                        "endOffsets": "3226,3328,3427,3529,3633,3737,3855,14243"
                     }
                 }
             ]

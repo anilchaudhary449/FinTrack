@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.7.2" type="incidents">
+
+    <incident
+        id="RemoveWorkManagerInitializer"
+        severity="fatal"
+        message="Remove androidx.work.WorkManagerInitializer from your AndroidManifest.xml when using on-demand initialization.">
+        <location
+            file="${:app*release*MAIN*sourceProvider*0*manifest*0}"
+            line="11"
+            column="5"
+            startOffset="556"
+            endLine="45"
+            endColumn="19"
+            endOffset="1925"/>
+    </incident>
+
+</incidents>

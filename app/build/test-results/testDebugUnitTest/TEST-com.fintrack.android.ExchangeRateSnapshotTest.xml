@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fintrack.android.ExchangeRateSnapshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-02T18:49:14.828Z" hostname="DESKTOP-K6V9G2S" time="0.003">
+  <properties/>
+  <testcase name="same currency conversion leaves amount unchanged" classname="com.fintrack.android.ExchangeRateSnapshotTest" time="0.002"/>
+  <testcase name="convert from base to target and back" classname="com.fintrack.android.ExchangeRateSnapshotTest" time="0.001"/>
+  <testcase name="missing rate does not invent a conversion" classname="com.fintrack.android.ExchangeRateSnapshotTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -38,13 +38,35 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"შემომავალი ზარების გაცხრილვა"</string>
     <string msgid="406453423630273620" name="close_drawer">"ნავიგაციის მენიუს დახურვა"</string>
     <string msgid="7573152094250666567" name="close_sheet">"ფურცლის დახურვა"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">ჩართვა</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s ვერ იმუშავებს Google Play Services-ის ჩართვამდე.</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play Services-ის ჩართვა</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">ინსტალაცია</string>
+    <string name="common_google_play_services_install_text">%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომელიც აკლია თქვენს მოწყობილობას.</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play Services-ის ჩამოტვირთვა</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play services-ის ხელმისაწვდომობა</string>
+    <string name="common_google_play_services_notification_ticker">Google Play Services-ის შეცდომა</string>
+    <string name="common_google_play_services_unknown_issue">%1$s-ს Google Play Services-თან პრობლემა შეექმნა. გთხოვთ, ცადოთ ხელახლა.</string>
+    <string name="common_google_play_services_unsupported_text">%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომლებიც მხარდაუჭერელია თქვენი მოწყობილობის მიერ.</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">განახლება</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s ვერ გაეშვება, თუ Google Play სერვისებს არ განაახლებთ.</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">განაახლეთ Google Play Services</string>
+    <string name="common_google_play_services_updating_text">%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომელთა განახლებაც ამჟამად მიმდინარეობს.</string>
+    <string name="common_google_play_services_wear_update_text">საჭიროა Google Play Services-ის ახალი ვერსია. ის მალე განახლდება.</string>
+    <string name="common_open_on_phone">ტელეფონში გახსნა</string>
+    <string name="common_signin_button_text">შესვლა</string>
+    <string name="common_signin_button_text_long">Google-ით შესვლა</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"პაროლის გამოყენება"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"გაცვლის ბუფერში კოპირებული ბმული"</string>
     <string msgid="8038256446254964252" name="default_error_message">"შენატანი არასწორია"</string>
     <string msgid="4776854077120974966" name="default_error_msg">"უცნობი შეცდომა"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"ამომხტარი ფანჯარა"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"ჩამოსაშლელი მენიუ"</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"გასაგრძელებლად გამოიყენეთ თქვენი სახე ან ეკრანის განბლოკვის ნიმუში"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"გასაგრძელებლად გამოიყენეთ თქვენი სახე"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"ბმულის კოპირება"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ბრაუზერში გახსნა"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"ბმულის გაზიარება"</string>
     <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"თითის ანაბეჭდის ხატულა"</string>
     <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"შეეხეთ თითის ანაბეჭდის სენსორს"</string>
     <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"თითის ანაბეჭდის აპარატურა მიუწვდომელია."</string>
@@ -117,10 +139,31 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"მინიშნების ჩვენება"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"მინიშნება"</string>
+    <string name="native_body">ძირითადი ტექსტი</string>
+    <string name="native_headline">სათაური</string>
+    <string name="native_media_view">მედიაპანელი</string>
     <string msgid="542007171693138492" name="navigation_menu">"ნავიგაციის მენიუ"</string>
     <string msgid="6610465462668679431" name="not_selected">"არ არის არჩეული"</string>
+    <string name="notifications_permission_confirm">დაშვება</string>
+    <string name="notifications_permission_decline">უარყოფა</string>
+    <string name="notifications_permission_title">ნებას დართავთ აპს, გამოგიგზავნოთ შეტყობინებები?</string>
+    <string name="offline_dialog_image_description">ხატულა</string>
+    <string name="offline_dialog_text">გმადლობთ დაინტერესებისთვის.\nჩვენ კვლავ გაგიზიარებთ, როგორც კი ონლაინ დაბრუნდებით.</string>
+    <string name="offline_notification_title">თქვენ კვლავ ონლაინ ხართ! გავაგრძელოთ იქიდან, სადაც შევჩერდით</string>
+    <string name="offline_notification_title_with_advertiser">თქვენ კვლავ ონლაინ ხართ! განაგრძეთ %s-ის გაცნობა</string>
+    <string name="offline_opt_in_confirm">კარგი</string>
+    <string name="offline_opt_in_decline">არა, გმადლობთ</string>
+    <string name="offline_opt_in_message">ჩვენ გამოგიგზავნით შეტყობინებას რეკლამის განმთავსების საიტის ბმულით.</string>
+    <string name="offline_opt_in_title">გახსენით რეკლამა, როდესაც ონლაინ დაბრუნდებით.</string>
     <string msgid="5941395253238309765" name="range_end">"დიაპაზონის დასასრული"</string>
     <string msgid="7097486360902471446" name="range_start">"დიაპაზონის დასაწყისი"</string>
+    <string name="s1">სურათის შენახვა</string>
+    <string name="s2">აძლევთ ნებას რეკლამას, შეინახოს სურათი გალერეაში?</string>
+    <string name="s3">მიღება</string>
+    <string name="s4">უარყოფა</string>
+    <string name="s5">კალენდარში მოვლენის შექმნა</string>
+    <string name="s6">აძლევთ ნებას რეკლამას, შექმნას მოვლენა კალენდარში?</string>
+    <string name="s7">სატესტო რეკლამა</string>
     <string msgid="5659570757430909869" name="screen_lock_prompt_message">"გასაგრძელებლად შედით ეკრანის დაბლოკვაში"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"ძიება"</string>
     <string msgid="6043586758067023" name="selected">"არჩეული"</string>
@@ -140,4 +183,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"გამოიყენეთ თითის ანაბეჭდი"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"გამოიყენეთ თითის ანაბეჭდი ან ეკრანის დაბლოკვა"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"გამოიყენეთ ეკრანის დაბლოკვა"</string>
+    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

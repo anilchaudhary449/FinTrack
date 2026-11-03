@@ -146,6 +146,7 @@ fun FinDonutChart(
 fun FinBarChart(
     incomeAmount: BigDecimal,
     expenseAmount: BigDecimal,
+    currencyCode: String = "NPR",
     modifier: Modifier = Modifier
 ) {
     val maxVal = incomeAmount.max(expenseAmount).max(BigDecimal.ONE)
@@ -156,26 +157,35 @@ fun FinBarChart(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(140.dp)
+                .height(170.dp)
                 .padding(horizontal = 24.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.Bottom
         ) {
             // Income bar
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(
-                    text = CurrencyFormatter.format(incomeAmount),
+                    text = CurrencyFormatter.format(incomeAmount, currencyCode),
                     style = MaterialTheme.typography.labelSmall,
                     fontWeight = FontWeight.Bold,
-                    color = IncomeGreen
+                    color = IncomeGreen,
+                    maxLines = 1
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Box(
-                    modifier = Modifier
-                        .width(42.dp)
-                        .fillMaxHeight(incomeRatio)
-                        .background(IncomeGreen, MaterialTheme.shapes.small)
-                )
+                    modifier = Modifier.weight(1f).width(42.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(incomeRatio)
+                            .background(IncomeGreen, MaterialTheme.shapes.small)
+                    )
+                }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "Income",
@@ -185,20 +195,29 @@ fun FinBarChart(
             }
 
             // Expense bar
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Text(
-                    text = CurrencyFormatter.format(expenseAmount),
+                    text = CurrencyFormatter.format(expenseAmount, currencyCode),
                     style = MaterialTheme.typography.labelSmall,
                     fontWeight = FontWeight.Bold,
-                    color = ExpenseRed
+                    color = ExpenseRed,
+                    maxLines = 1
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Box(
-                    modifier = Modifier
-                        .width(42.dp)
-                        .fillMaxHeight(expenseRatio)
-                        .background(ExpenseRed, MaterialTheme.shapes.small)
-                )
+                    modifier = Modifier.weight(1f).width(42.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(expenseRatio)
+                            .background(ExpenseRed, MaterialTheme.shapes.small)
+                    )
+                }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "Expense",

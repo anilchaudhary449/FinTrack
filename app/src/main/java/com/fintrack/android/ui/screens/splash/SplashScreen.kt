@@ -1,22 +1,30 @@
 package com.fintrack.android.ui.screens.splash
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.scaleIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.animation.core.tween
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fintrack.android.R
 import com.fintrack.android.data.preferences.UserPreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -57,6 +65,11 @@ fun SplashScreen(
     viewModel: SplashViewModel = hiltViewModel()
 ) {
     val destination = viewModel.destination
+    var showLogo by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        showLogo = true
+    }
 
     LaunchedEffect(Unit) {
         destination.collect { target ->
@@ -76,11 +89,18 @@ fun SplashScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Image(
-                painter = painterResource(id = R.mipmap.ic_launcher),
-                contentDescription = "FinTrack Logo",
-                modifier = Modifier.size(96.dp)
-            )
+            AnimatedVisibility(
+                visible = showLogo,
+                enter = fadeIn(animationSpec = tween(500)) +
+                        scaleIn(initialScale = 0.82f, animationSpec = tween(500))
+            ) {
+                Icon(
+                    imageVector = Icons.Default.AccountBalanceWallet,
+                    contentDescription = "FinTrack Logo",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(96.dp)
+                )
+            }
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "FinTrack",

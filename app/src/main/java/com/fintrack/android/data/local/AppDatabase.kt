@@ -80,6 +80,15 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            INSTANCE?.let { database ->
+                scope.launch(Dispatchers.IO) {
+                    ensureDefaultCategories(database.categoryDao())
+                }
+            }
+        }
+
         private suspend fun populateInitialData(database: AppDatabase) {
             val accountDao = database.accountDao()
             val categoryDao = database.categoryDao()
@@ -91,24 +100,24 @@ abstract class AppDatabase : RoomDatabase() {
                         AccountEntity(
                             name = "Cash Wallet",
                             type = AccountType.CASH_WALLET,
-                            openingBalance = BigDecimal("5000.00"),
-                            currentBalance = BigDecimal("5000.00"),
+                            openingBalance = BigDecimal.ZERO,
+                            currentBalance = BigDecimal.ZERO,
                             currency = "NPR",
                             description = "Physical cash on hand"
                         ),
                         AccountEntity(
                             name = "Bank Account",
                             type = AccountType.BANK_ACCOUNT,
-                            openingBalance = BigDecimal("45000.00"),
-                            currentBalance = BigDecimal("45000.00"),
+                            openingBalance = BigDecimal.ZERO,
+                            currentBalance = BigDecimal.ZERO,
                             currency = "NPR",
                             description = "Primary checking / salary account"
                         ),
                         AccountEntity(
                             name = "eSewa / Digital Wallet",
                             type = AccountType.DIGITAL_WALLET,
-                            openingBalance = BigDecimal("3500.00"),
-                            currentBalance = BigDecimal("3500.00"),
+                            openingBalance = BigDecimal.ZERO,
+                            currentBalance = BigDecimal.ZERO,
                             currency = "NPR",
                             description = "Daily utility & QR payments"
                         )
@@ -116,9 +125,14 @@ abstract class AppDatabase : RoomDatabase() {
                 )
             }
 
-            // Seed default categories
-            if (categoryDao.getCategoriesCount() == 0) {
-                val categories = listOf(
+            ensureDefaultCategories(categoryDao)
+        }
+
+        private suspend fun ensureDefaultCategories(categoryDao: CategoryDao) {
+            val existingKeys = categoryDao.getAllCategoriesDirect()
+                .map { it.type to it.name.trim().lowercase() }
+                .toSet()
+            val categories = listOf(
                     // Income Categories
                     CategoryEntity(name = "Salary", type = CategoryType.INCOME, iconName = "payments", colorHex = "#10B981", isDefault = true),
                     CategoryEntity(name = "Business", type = CategoryType.INCOME, iconName = "store", colorHex = "#3B82F6", isDefault = true),
@@ -127,6 +141,10 @@ abstract class AppDatabase : RoomDatabase() {
                     CategoryEntity(name = "Rental Income", type = CategoryType.INCOME, iconName = "home", colorHex = "#F59E0B", isDefault = true),
                     CategoryEntity(name = "Interest", type = CategoryType.INCOME, iconName = "savings", colorHex = "#EC4899", isDefault = true),
                     CategoryEntity(name = "Gifts", type = CategoryType.INCOME, iconName = "card_giftcard", colorHex = "#14B8A6", isDefault = true),
+                    CategoryEntity(name = "Pension", type = CategoryType.INCOME, iconName = "elderly", colorHex = "#0EA5E9", isDefault = true),
+                    CategoryEntity(name = "Dividends", type = CategoryType.INCOME, iconName = "account_balance", colorHex = "#16A34A", isDefault = true),
+                    CategoryEntity(name = "Refunds", type = CategoryType.INCOME, iconName = "replay", colorHex = "#0891B2", isDefault = true),
+                    CategoryEntity(name = "Side Hustle", type = CategoryType.INCOME, iconName = "work", colorHex = "#7C3AED", isDefault = true),
                     CategoryEntity(name = "Other Income", type = CategoryType.INCOME, iconName = "more_horiz", colorHex = "#6B7280", isDefault = true),
 
                     // Expense Categories
@@ -148,9 +166,18 @@ abstract class AppDatabase : RoomDatabase() {
                     CategoryEntity(name = "Investments", type = CategoryType.EXPENSE, iconName = "trending_up", colorHex = "#047857", isDefault = true),
                     CategoryEntity(name = "Taxes", type = CategoryType.EXPENSE, iconName = "request_quote", colorHex = "#991B1B", isDefault = true),
                     CategoryEntity(name = "Gifts & Donations", type = CategoryType.EXPENSE, iconName = "volunteer_activism", colorHex = "#D946EF", isDefault = true),
+                    CategoryEntity(name = "Travel", type = CategoryType.EXPENSE, iconName = "flight", colorHex = "#0284C7", isDefault = true),
+                    CategoryEntity(name = "Home Supplies", type = CategoryType.EXPENSE, iconName = "home_repair_service", colorHex = "#B45309", isDefault = true),
+                    CategoryEntity(name = "Pets", type = CategoryType.EXPENSE, iconName = "pets", colorHex = "#C026D3", isDefault = true),
+                    CategoryEntity(name = "Childcare", type = CategoryType.EXPENSE, iconName = "child_care", colorHex = "#DB2777", isDefault = true),
+                    CategoryEntity(name = "Subscriptions", type = CategoryType.EXPENSE, iconName = "subscriptions", colorHex = "#4F46E5", isDefault = true),
+                    CategoryEntity(name = "Repairs & Maintenance", type = CategoryType.EXPENSE, iconName = "build", colorHex = "#A16207", isDefault = true),
+                    CategoryEntity(name = "Other", type = CategoryType.EXPENSE, iconName = "more_horiz", colorHex = "#6B7280", isDefault = true),
                     CategoryEntity(name = "Miscellaneous", type = CategoryType.EXPENSE, iconName = "category", colorHex = "#6B7280", isDefault = true)
                 )
-                categoryDao.insertAll(categories)
+            val missingCategories = categories.filter { (it.type to it.name.trim().lowercase()) !in existingKeys }
+            if (missingCategories.isNotEmpty()) {
+                categoryDao.insertAll(missingCategories)
             }
         }
     }

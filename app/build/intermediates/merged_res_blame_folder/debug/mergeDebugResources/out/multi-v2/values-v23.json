@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.fintrack.android.app-mergeDebugResources-73:/values-v23/values-v23.xml",
+            "outputFile": "com.fintrack.android.app-mergeDebugResources-81:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\8f7cf5790cecf6858820134a5e425236\\transformed\\work-runtime-2.9.1\\res\\values-v23\\values-v23.xml",
+                    "source": "D:\\FinTrack-1-gradle-home\\caches\\8.13\\transforms\\3bb0f644916b7b90d0435d80311c0bfc\\transformed\\work-runtime-2.9.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\abf242c339ef7aa485b6e181cf53ebc2\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
+                    "source": "D:\\FinTrack-1-gradle-home\\caches\\8.13\\transforms\\927e601b0fcddf40325e73207922b1e1\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

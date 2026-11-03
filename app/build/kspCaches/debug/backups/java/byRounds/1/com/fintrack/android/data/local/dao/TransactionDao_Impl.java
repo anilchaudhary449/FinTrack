@@ -1872,6 +1872,228 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
+  public Flow<TransactionWithDetails> getTransactionWithDetailsByIdFlow(final long id) {
+    final String _sql = "SELECT * FROM transactions WHERE id = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, id);
+    return CoroutinesRoom.createFlow(__db, true, new String[] {"categories", "accounts",
+        "transactions"}, new Callable<TransactionWithDetails>() {
+      @Override
+      @Nullable
+      public TransactionWithDetails call() throws Exception {
+        __db.beginTransaction();
+        try {
+          final Cursor _cursor = DBUtil.query(__db, _statement, true, null);
+          try {
+            final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+            final int _cursorIndexOfType = CursorUtil.getColumnIndexOrThrow(_cursor, "type");
+            final int _cursorIndexOfAmount = CursorUtil.getColumnIndexOrThrow(_cursor, "amount");
+            final int _cursorIndexOfCategoryId = CursorUtil.getColumnIndexOrThrow(_cursor, "categoryId");
+            final int _cursorIndexOfAccountId = CursorUtil.getColumnIndexOrThrow(_cursor, "accountId");
+            final int _cursorIndexOfToAccountId = CursorUtil.getColumnIndexOrThrow(_cursor, "toAccountId");
+            final int _cursorIndexOfPaymentMethod = CursorUtil.getColumnIndexOrThrow(_cursor, "paymentMethod");
+            final int _cursorIndexOfTransactionDate = CursorUtil.getColumnIndexOrThrow(_cursor, "transactionDate");
+            final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
+            final int _cursorIndexOfReceiptUri = CursorUtil.getColumnIndexOrThrow(_cursor, "receiptUri");
+            final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
+            final int _cursorIndexOfExchangeRate = CursorUtil.getColumnIndexOrThrow(_cursor, "exchangeRate");
+            final int _cursorIndexOfRecurringTransactionId = CursorUtil.getColumnIndexOrThrow(_cursor, "recurringTransactionId");
+            final int _cursorIndexOfDebtId = CursorUtil.getColumnIndexOrThrow(_cursor, "debtId");
+            final int _cursorIndexOfSavingsGoalId = CursorUtil.getColumnIndexOrThrow(_cursor, "savingsGoalId");
+            final int _cursorIndexOfIsReconciled = CursorUtil.getColumnIndexOrThrow(_cursor, "isReconciled");
+            final int _cursorIndexOfCreatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "createdAt");
+            final int _cursorIndexOfUpdatedAt = CursorUtil.getColumnIndexOrThrow(_cursor, "updatedAt");
+            final LongSparseArray<CategoryEntity> _collectionCategory = new LongSparseArray<CategoryEntity>();
+            final LongSparseArray<AccountEntity> _collectionAccount = new LongSparseArray<AccountEntity>();
+            final LongSparseArray<AccountEntity> _collectionToAccount = new LongSparseArray<AccountEntity>();
+            while (_cursor.moveToNext()) {
+              final Long _tmpKey;
+              if (_cursor.isNull(_cursorIndexOfCategoryId)) {
+                _tmpKey = null;
+              } else {
+                _tmpKey = _cursor.getLong(_cursorIndexOfCategoryId);
+              }
+              if (_tmpKey != null) {
+                _collectionCategory.put(_tmpKey, null);
+              }
+              final long _tmpKey_1;
+              _tmpKey_1 = _cursor.getLong(_cursorIndexOfAccountId);
+              _collectionAccount.put(_tmpKey_1, null);
+              final Long _tmpKey_2;
+              if (_cursor.isNull(_cursorIndexOfToAccountId)) {
+                _tmpKey_2 = null;
+              } else {
+                _tmpKey_2 = _cursor.getLong(_cursorIndexOfToAccountId);
+              }
+              if (_tmpKey_2 != null) {
+                _collectionToAccount.put(_tmpKey_2, null);
+              }
+            }
+            _cursor.moveToPosition(-1);
+            __fetchRelationshipcategoriesAscomFintrackAndroidDataLocalEntityCategoryEntity(_collectionCategory);
+            __fetchRelationshipaccountsAscomFintrackAndroidDataLocalEntityAccountEntity(_collectionAccount);
+            __fetchRelationshipaccountsAscomFintrackAndroidDataLocalEntityAccountEntity(_collectionToAccount);
+            final TransactionWithDetails _result;
+            if (_cursor.moveToFirst()) {
+              final TransactionEntity _tmpTransaction;
+              final long _tmpId;
+              _tmpId = _cursor.getLong(_cursorIndexOfId);
+              final TransactionType _tmpType;
+              final String _tmp;
+              if (_cursor.isNull(_cursorIndexOfType)) {
+                _tmp = null;
+              } else {
+                _tmp = _cursor.getString(_cursorIndexOfType);
+              }
+              final TransactionType _tmp_1 = __roomTypeConverters.toTransactionType(_tmp);
+              if (_tmp_1 == null) {
+                throw new IllegalStateException("Expected NON-NULL 'com.fintrack.android.domain.model.TransactionType', but it was NULL.");
+              } else {
+                _tmpType = _tmp_1;
+              }
+              final BigDecimal _tmpAmount;
+              final String _tmp_2;
+              if (_cursor.isNull(_cursorIndexOfAmount)) {
+                _tmp_2 = null;
+              } else {
+                _tmp_2 = _cursor.getString(_cursorIndexOfAmount);
+              }
+              final BigDecimal _tmp_3 = __roomTypeConverters.toBigDecimal(_tmp_2);
+              if (_tmp_3 == null) {
+                throw new IllegalStateException("Expected NON-NULL 'java.math.BigDecimal', but it was NULL.");
+              } else {
+                _tmpAmount = _tmp_3;
+              }
+              final Long _tmpCategoryId;
+              if (_cursor.isNull(_cursorIndexOfCategoryId)) {
+                _tmpCategoryId = null;
+              } else {
+                _tmpCategoryId = _cursor.getLong(_cursorIndexOfCategoryId);
+              }
+              final long _tmpAccountId;
+              _tmpAccountId = _cursor.getLong(_cursorIndexOfAccountId);
+              final Long _tmpToAccountId;
+              if (_cursor.isNull(_cursorIndexOfToAccountId)) {
+                _tmpToAccountId = null;
+              } else {
+                _tmpToAccountId = _cursor.getLong(_cursorIndexOfToAccountId);
+              }
+              final PaymentMethod _tmpPaymentMethod;
+              final String _tmp_4;
+              if (_cursor.isNull(_cursorIndexOfPaymentMethod)) {
+                _tmp_4 = null;
+              } else {
+                _tmp_4 = _cursor.getString(_cursorIndexOfPaymentMethod);
+              }
+              final PaymentMethod _tmp_5 = __roomTypeConverters.toPaymentMethod(_tmp_4);
+              if (_tmp_5 == null) {
+                throw new IllegalStateException("Expected NON-NULL 'com.fintrack.android.domain.model.PaymentMethod', but it was NULL.");
+              } else {
+                _tmpPaymentMethod = _tmp_5;
+              }
+              final long _tmpTransactionDate;
+              _tmpTransactionDate = _cursor.getLong(_cursorIndexOfTransactionDate);
+              final String _tmpNotes;
+              _tmpNotes = _cursor.getString(_cursorIndexOfNotes);
+              final String _tmpReceiptUri;
+              if (_cursor.isNull(_cursorIndexOfReceiptUri)) {
+                _tmpReceiptUri = null;
+              } else {
+                _tmpReceiptUri = _cursor.getString(_cursorIndexOfReceiptUri);
+              }
+              final String _tmpCurrency;
+              _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
+              final BigDecimal _tmpExchangeRate;
+              final String _tmp_6;
+              if (_cursor.isNull(_cursorIndexOfExchangeRate)) {
+                _tmp_6 = null;
+              } else {
+                _tmp_6 = _cursor.getString(_cursorIndexOfExchangeRate);
+              }
+              final BigDecimal _tmp_7 = __roomTypeConverters.toBigDecimal(_tmp_6);
+              if (_tmp_7 == null) {
+                throw new IllegalStateException("Expected NON-NULL 'java.math.BigDecimal', but it was NULL.");
+              } else {
+                _tmpExchangeRate = _tmp_7;
+              }
+              final Long _tmpRecurringTransactionId;
+              if (_cursor.isNull(_cursorIndexOfRecurringTransactionId)) {
+                _tmpRecurringTransactionId = null;
+              } else {
+                _tmpRecurringTransactionId = _cursor.getLong(_cursorIndexOfRecurringTransactionId);
+              }
+              final Long _tmpDebtId;
+              if (_cursor.isNull(_cursorIndexOfDebtId)) {
+                _tmpDebtId = null;
+              } else {
+                _tmpDebtId = _cursor.getLong(_cursorIndexOfDebtId);
+              }
+              final Long _tmpSavingsGoalId;
+              if (_cursor.isNull(_cursorIndexOfSavingsGoalId)) {
+                _tmpSavingsGoalId = null;
+              } else {
+                _tmpSavingsGoalId = _cursor.getLong(_cursorIndexOfSavingsGoalId);
+              }
+              final boolean _tmpIsReconciled;
+              final int _tmp_8;
+              _tmp_8 = _cursor.getInt(_cursorIndexOfIsReconciled);
+              _tmpIsReconciled = _tmp_8 != 0;
+              final long _tmpCreatedAt;
+              _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
+              final long _tmpUpdatedAt;
+              _tmpUpdatedAt = _cursor.getLong(_cursorIndexOfUpdatedAt);
+              _tmpTransaction = new TransactionEntity(_tmpId,_tmpType,_tmpAmount,_tmpCategoryId,_tmpAccountId,_tmpToAccountId,_tmpPaymentMethod,_tmpTransactionDate,_tmpNotes,_tmpReceiptUri,_tmpCurrency,_tmpExchangeRate,_tmpRecurringTransactionId,_tmpDebtId,_tmpSavingsGoalId,_tmpIsReconciled,_tmpCreatedAt,_tmpUpdatedAt);
+              final CategoryEntity _tmpCategory;
+              final Long _tmpKey_3;
+              if (_cursor.isNull(_cursorIndexOfCategoryId)) {
+                _tmpKey_3 = null;
+              } else {
+                _tmpKey_3 = _cursor.getLong(_cursorIndexOfCategoryId);
+              }
+              if (_tmpKey_3 != null) {
+                _tmpCategory = _collectionCategory.get(_tmpKey_3);
+              } else {
+                _tmpCategory = null;
+              }
+              final AccountEntity _tmpAccount;
+              final long _tmpKey_4;
+              _tmpKey_4 = _cursor.getLong(_cursorIndexOfAccountId);
+              _tmpAccount = _collectionAccount.get(_tmpKey_4);
+              final AccountEntity _tmpToAccount;
+              final Long _tmpKey_5;
+              if (_cursor.isNull(_cursorIndexOfToAccountId)) {
+                _tmpKey_5 = null;
+              } else {
+                _tmpKey_5 = _cursor.getLong(_cursorIndexOfToAccountId);
+              }
+              if (_tmpKey_5 != null) {
+                _tmpToAccount = _collectionToAccount.get(_tmpKey_5);
+              } else {
+                _tmpToAccount = null;
+              }
+              _result = new TransactionWithDetails(_tmpTransaction,_tmpCategory,_tmpAccount,_tmpToAccount);
+            } else {
+              _result = null;
+            }
+            __db.setTransactionSuccessful();
+            return _result;
+          } finally {
+            _cursor.close();
+          }
+        } finally {
+          __db.endTransaction();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
   public Object getTransactionEntityById(final long id,
       final Continuation<? super TransactionEntity> $completion) {
     final String _sql = "SELECT * FROM transactions WHERE id = ?";

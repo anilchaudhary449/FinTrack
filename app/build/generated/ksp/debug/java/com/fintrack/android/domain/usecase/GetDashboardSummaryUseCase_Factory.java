@@ -3,6 +3,7 @@ package com.fintrack.android.domain.usecase;
 import com.fintrack.android.domain.repository.AccountRepository;
 import com.fintrack.android.domain.repository.BudgetRepository;
 import com.fintrack.android.domain.repository.DebtRepository;
+import com.fintrack.android.domain.repository.ExchangeRateRepository;
 import com.fintrack.android.domain.repository.RecurringRepository;
 import com.fintrack.android.domain.repository.TransactionRepository;
 import dagger.internal.DaggerGenerated;
@@ -37,21 +38,25 @@ public final class GetDashboardSummaryUseCase_Factory implements Factory<GetDash
 
   private final Provider<RecurringRepository> recurringRepositoryProvider;
 
+  private final Provider<ExchangeRateRepository> exchangeRateRepositoryProvider;
+
   public GetDashboardSummaryUseCase_Factory(Provider<AccountRepository> accountRepositoryProvider,
       Provider<TransactionRepository> transactionRepositoryProvider,
       Provider<DebtRepository> debtRepositoryProvider,
       Provider<BudgetRepository> budgetRepositoryProvider,
-      Provider<RecurringRepository> recurringRepositoryProvider) {
+      Provider<RecurringRepository> recurringRepositoryProvider,
+      Provider<ExchangeRateRepository> exchangeRateRepositoryProvider) {
     this.accountRepositoryProvider = accountRepositoryProvider;
     this.transactionRepositoryProvider = transactionRepositoryProvider;
     this.debtRepositoryProvider = debtRepositoryProvider;
     this.budgetRepositoryProvider = budgetRepositoryProvider;
     this.recurringRepositoryProvider = recurringRepositoryProvider;
+    this.exchangeRateRepositoryProvider = exchangeRateRepositoryProvider;
   }
 
   @Override
   public GetDashboardSummaryUseCase get() {
-    return newInstance(accountRepositoryProvider.get(), transactionRepositoryProvider.get(), debtRepositoryProvider.get(), budgetRepositoryProvider.get(), recurringRepositoryProvider.get());
+    return newInstance(accountRepositoryProvider.get(), transactionRepositoryProvider.get(), debtRepositoryProvider.get(), budgetRepositoryProvider.get(), recurringRepositoryProvider.get(), exchangeRateRepositoryProvider.get());
   }
 
   public static GetDashboardSummaryUseCase_Factory create(
@@ -59,13 +64,15 @@ public final class GetDashboardSummaryUseCase_Factory implements Factory<GetDash
       Provider<TransactionRepository> transactionRepositoryProvider,
       Provider<DebtRepository> debtRepositoryProvider,
       Provider<BudgetRepository> budgetRepositoryProvider,
-      Provider<RecurringRepository> recurringRepositoryProvider) {
-    return new GetDashboardSummaryUseCase_Factory(accountRepositoryProvider, transactionRepositoryProvider, debtRepositoryProvider, budgetRepositoryProvider, recurringRepositoryProvider);
+      Provider<RecurringRepository> recurringRepositoryProvider,
+      Provider<ExchangeRateRepository> exchangeRateRepositoryProvider) {
+    return new GetDashboardSummaryUseCase_Factory(accountRepositoryProvider, transactionRepositoryProvider, debtRepositoryProvider, budgetRepositoryProvider, recurringRepositoryProvider, exchangeRateRepositoryProvider);
   }
 
   public static GetDashboardSummaryUseCase newInstance(AccountRepository accountRepository,
       TransactionRepository transactionRepository, DebtRepository debtRepository,
-      BudgetRepository budgetRepository, RecurringRepository recurringRepository) {
-    return new GetDashboardSummaryUseCase(accountRepository, transactionRepository, debtRepository, budgetRepository, recurringRepository);
+      BudgetRepository budgetRepository, RecurringRepository recurringRepository,
+      ExchangeRateRepository exchangeRateRepository) {
+    return new GetDashboardSummaryUseCase(accountRepository, transactionRepository, debtRepository, budgetRepository, recurringRepository, exchangeRateRepository);
   }
 }

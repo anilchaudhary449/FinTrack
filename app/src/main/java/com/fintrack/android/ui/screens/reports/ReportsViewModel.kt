@@ -10,6 +10,7 @@ import com.fintrack.android.data.export.FinancialStatementGenerator
 import com.fintrack.android.data.preferences.UserPreferencesManager
 import com.fintrack.android.domain.model.*
 import com.fintrack.android.domain.repository.AccountRepository
+import com.fintrack.android.domain.repository.ExchangeRateRepository
 import com.fintrack.android.domain.repository.TransactionRepository
 import com.fintrack.android.domain.usecase.GetDashboardSummaryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,7 +42,15 @@ data class ReportsUiState(
     val categorySpending: List<CategorySpending> = emptyList(),
     val accounts: List<Account> = emptyList(),
     val transactions: List<Transaction> = emptyList(),
+    val displayCurrency: String = "NPR",
     val exportSuccessMessage: String? = null
+)
+
+private data class ReportsInputs(
+    val range: TimeRange,
+    val accounts: List<Account>,
+    val message: String?,
+    val displayCurrency: String
 )
 
 @HiltViewModel
@@ -49,7 +58,8 @@ class ReportsViewModel @Inject constructor(
     private val getDashboardSummaryUseCase: GetDashboardSummaryUseCase,
     private val transactionRepository: TransactionRepository,
     private val accountRepository: AccountRepository,
-    private val preferencesManager: UserPreferencesManager
+    private val preferencesManager: UserPreferencesManager,
+    private val exchangeRateRepository: ExchangeRateRepository
 ) : ViewModel() {
 
     private val _timeRange = MutableStateFlow(TimeRange.THIS_MONTH)
@@ -58,22 +68,27 @@ class ReportsViewModel @Inject constructor(
     val uiState: StateFlow<ReportsUiState> = combine(
         _timeRange,
         accountRepository.getAllAccounts(),
-        _exportMessage
-    ) { range, accounts, message ->
-        Pair(range, Pair(accounts, message))
-    }.flatMapLatest { (range, pair) ->
-        val (accounts, message) = pair
-        getDashboardSummaryUseCase(range).combine(
+        _exportMessage,
+        preferencesManager.userPreferencesFlow
+    ) { range, accounts, message, prefs ->
+        ReportsInputs(range, accounts, message, prefs.defaultCurrency)
+    }.flatMapLatest { inputs ->
+        getDashboardSummaryUseCase(inputs.range, targetCurrency = inputs.displayCurrency).combine(
             transactionRepository.getAllTransactions()
         ) { summary, allTxs ->
-            val spending = calculateCategorySpending(allTxs, summary.totalExpenses)
+            val spending = calculateCategorySpending(
+                allTxs,
+                summary.totalExpenses,
+                inputs.displayCurrency
+            )
             ReportsUiState(
-                timeRange = range,
+                timeRange = inputs.range,
                 summary = summary,
                 categorySpending = spending,
-                accounts = accounts,
+                accounts = inputs.accounts,
                 transactions = allTxs,
-                exportSuccessMessage = message
+                displayCurrency = inputs.displayCurrency,
+                exportSuccessMessage = inputs.message
             )
         }
     }.stateIn(
@@ -96,6 +111,7 @@ class ReportsViewModel @Inject constructor(
                     FileOutputStream(file).use { it.write(csvData.toByteArray(Charsets.UTF_8)) }
 
                     shareFile(context, file, "text/csv")
+                    _exportMessage.value = "CSV export ready to share"
                 } catch (e: Exception) {
                     _exportMessage.value = "CSV export failed: ${e.message}"
                 }
@@ -103,24 +119,22 @@ class ReportsViewModel @Inject constructor(
         }
     }
 
-    fun exportStatementHtml(context: Context) {
+    fun exportStatementPdf(context: Context) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     val now = LocalDate.now()
                     val monthName = now.month.getDisplayName(TextStyle.FULL, Locale.US)
-                    val html = FinancialStatementGenerator.generateHtmlMonthlyStatement(
+                    val file = FinancialStatementGenerator.generatePdfMonthlyStatement(
+                        context = context,
                         monthName = monthName,
                         year = now.year,
                         summary = uiState.value.summary,
                         transactions = uiState.value.transactions.take(100)
                     )
 
-                    val exportDir = File(context.cacheDir, "exports").apply { mkdirs() }
-                    val file = File(exportDir, "FinTrack_Statement_${monthName}_${now.year}.html")
-                    FileOutputStream(file).use { it.write(html.toByteArray(Charsets.UTF_8)) }
-
-                    shareFile(context, file, "text/html")
+                    shareFile(context, file, "application/pdf")
+                    _exportMessage.value = "PDF statement ready to share"
                 } catch (e: Exception) {
                     _exportMessage.value = "Statement export failed: ${e.message}"
                 }
@@ -144,14 +158,23 @@ class ReportsViewModel @Inject constructor(
         context.startActivity(chooser)
     }
 
-    private fun calculateCategorySpending(transactions: List<Transaction>, totalExpense: BigDecimal): List<CategorySpending> {
+    private fun calculateCategorySpending(
+        transactions: List<Transaction>,
+        totalExpense: BigDecimal,
+        displayCurrency: String
+    ): List<CategorySpending> {
         val expenses = transactions.filter { it.type == TransactionType.EXPENSE }
         if (expenses.isEmpty() || totalExpense.compareTo(BigDecimal.ZERO) <= 0) return emptyList()
 
         return expenses.groupBy { it.categoryId ?: 0L }
             .map { (catId, txs) ->
                 val first = txs.first()
-                val sum = txs.fold(BigDecimal.ZERO) { acc, t -> acc.add(t.amount) }
+                val sum = txs.fold(BigDecimal.ZERO) { acc, transaction ->
+                    val converted = exchangeRateRepository.snapshot.value
+                        ?.convert(transaction.amount, transaction.currency, displayCurrency)
+                        ?: transaction.amount
+                    acc.add(converted)
+                }
                 val percentage = sum.divide(totalExpense, 4, RoundingMode.HALF_EVEN)
                     .multiply(BigDecimal(100)).toFloat()
                 CategorySpending(

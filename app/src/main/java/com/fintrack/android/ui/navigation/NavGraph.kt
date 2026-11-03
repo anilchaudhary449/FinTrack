@@ -30,7 +30,8 @@ import com.fintrack.android.ui.screens.transaction.TransactionListScreen
 
 @Composable
 fun FinTrackNavGraph(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    adsEnabled: Boolean = false
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route ?: Screen.Splash.route
@@ -87,6 +88,7 @@ fun FinTrackNavGraph(
 
             composable(Screen.Dashboard.route) {
                 DashboardScreen(
+                    adsEnabled = adsEnabled,
                     onNavigateToAddTransaction = { type ->
                         navController.navigate(Screen.AddEditTransaction.createRoute(type = type.name))
                     },

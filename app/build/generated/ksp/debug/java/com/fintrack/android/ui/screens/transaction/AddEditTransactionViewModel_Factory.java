@@ -1,5 +1,6 @@
 package com.fintrack.android.ui.screens.transaction;
 
+import android.content.Context;
 import androidx.lifecycle.SavedStateHandle;
 import com.fintrack.android.domain.repository.AccountRepository;
 import com.fintrack.android.domain.repository.CategoryRepository;
@@ -13,7 +14,7 @@ import javax.annotation.processing.Generated;
 import javax.inject.Provider;
 
 @ScopeMetadata
-@QualifierMetadata
+@QualifierMetadata("dagger.hilt.android.qualifiers.ApplicationContext")
 @DaggerGenerated
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -35,6 +36,8 @@ public final class AddEditTransactionViewModel_Factory implements Factory<AddEdi
 
   private final Provider<TransferFundsUseCase> transferFundsUseCaseProvider;
 
+  private final Provider<Context> contextProvider;
+
   private final Provider<SavedStateHandle> savedStateHandleProvider;
 
   public AddEditTransactionViewModel_Factory(
@@ -42,17 +45,18 @@ public final class AddEditTransactionViewModel_Factory implements Factory<AddEdi
       Provider<AccountRepository> accountRepositoryProvider,
       Provider<CategoryRepository> categoryRepositoryProvider,
       Provider<TransferFundsUseCase> transferFundsUseCaseProvider,
-      Provider<SavedStateHandle> savedStateHandleProvider) {
+      Provider<Context> contextProvider, Provider<SavedStateHandle> savedStateHandleProvider) {
     this.transactionRepositoryProvider = transactionRepositoryProvider;
     this.accountRepositoryProvider = accountRepositoryProvider;
     this.categoryRepositoryProvider = categoryRepositoryProvider;
     this.transferFundsUseCaseProvider = transferFundsUseCaseProvider;
+    this.contextProvider = contextProvider;
     this.savedStateHandleProvider = savedStateHandleProvider;
   }
 
   @Override
   public AddEditTransactionViewModel get() {
-    return newInstance(transactionRepositoryProvider.get(), accountRepositoryProvider.get(), categoryRepositoryProvider.get(), transferFundsUseCaseProvider.get(), savedStateHandleProvider.get());
+    return newInstance(transactionRepositoryProvider.get(), accountRepositoryProvider.get(), categoryRepositoryProvider.get(), transferFundsUseCaseProvider.get(), contextProvider.get(), savedStateHandleProvider.get());
   }
 
   public static AddEditTransactionViewModel_Factory create(
@@ -60,13 +64,14 @@ public final class AddEditTransactionViewModel_Factory implements Factory<AddEdi
       Provider<AccountRepository> accountRepositoryProvider,
       Provider<CategoryRepository> categoryRepositoryProvider,
       Provider<TransferFundsUseCase> transferFundsUseCaseProvider,
-      Provider<SavedStateHandle> savedStateHandleProvider) {
-    return new AddEditTransactionViewModel_Factory(transactionRepositoryProvider, accountRepositoryProvider, categoryRepositoryProvider, transferFundsUseCaseProvider, savedStateHandleProvider);
+      Provider<Context> contextProvider, Provider<SavedStateHandle> savedStateHandleProvider) {
+    return new AddEditTransactionViewModel_Factory(transactionRepositoryProvider, accountRepositoryProvider, categoryRepositoryProvider, transferFundsUseCaseProvider, contextProvider, savedStateHandleProvider);
   }
 
   public static AddEditTransactionViewModel newInstance(TransactionRepository transactionRepository,
       AccountRepository accountRepository, CategoryRepository categoryRepository,
-      TransferFundsUseCase transferFundsUseCase, SavedStateHandle savedStateHandle) {
-    return new AddEditTransactionViewModel(transactionRepository, accountRepository, categoryRepository, transferFundsUseCase, savedStateHandle);
+      TransferFundsUseCase transferFundsUseCase, Context context,
+      SavedStateHandle savedStateHandle) {
+    return new AddEditTransactionViewModel(transactionRepository, accountRepository, categoryRepository, transferFundsUseCase, context, savedStateHandle);
   }
 }

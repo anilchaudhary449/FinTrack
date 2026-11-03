@@ -50,6 +50,21 @@ fun ReportsScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            state.exportSuccessMessage?.let { message ->
+                item {
+                    Text(
+                        text = message,
+                        modifier = Modifier.fillMaxWidth(),
+                        color = if (message.contains("failed", ignoreCase = true)) {
+                            MaterialTheme.colorScheme.error
+                        } else {
+                            MaterialTheme.colorScheme.primary
+                        },
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+
             // Time range selector
             item {
                 val scrollState = rememberScrollState()
@@ -90,7 +105,7 @@ fun ReportsScreen(
                         Column {
                             Text("Total Income", style = MaterialTheme.typography.labelSmall, color = IncomeGreen)
                             Text(
-                                text = CurrencyFormatter.format(state.summary.totalIncome),
+                                text = CurrencyFormatter.format(state.summary.totalIncome, state.displayCurrency),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = IncomeGreen
@@ -99,7 +114,7 @@ fun ReportsScreen(
                         Column {
                             Text("Total Expense", style = MaterialTheme.typography.labelSmall, color = ExpenseRed)
                             Text(
-                                text = CurrencyFormatter.format(state.summary.totalExpenses),
+                                text = CurrencyFormatter.format(state.summary.totalExpenses, state.displayCurrency),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = ExpenseRed
@@ -108,7 +123,7 @@ fun ReportsScreen(
                         Column {
                             Text("Net Savings", style = MaterialTheme.typography.labelSmall, color = TransferBlue)
                             Text(
-                                text = CurrencyFormatter.format(state.summary.netSavings),
+                                text = CurrencyFormatter.format(state.summary.netSavings, state.displayCurrency),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = TransferBlue
@@ -129,7 +144,8 @@ fun ReportsScreen(
                     Spacer(modifier = Modifier.height(16.dp))
                     FinBarChart(
                         incomeAmount = state.summary.totalIncome,
-                        expenseAmount = state.summary.totalExpenses
+                        expenseAmount = state.summary.totalExpenses,
+                        currencyCode = state.displayCurrency
                     )
                 }
             }
@@ -204,7 +220,7 @@ fun ReportsScreen(
                         }
 
                         Button(
-                            onClick = { viewModel.exportStatementHtml(context) },
+                            onClick = { viewModel.exportStatementPdf(context) },
                             modifier = Modifier.weight(1f),
                             shape = MaterialTheme.shapes.medium
                         ) {

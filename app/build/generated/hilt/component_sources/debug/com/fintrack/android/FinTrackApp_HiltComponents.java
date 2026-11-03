@@ -2,6 +2,7 @@ package com.fintrack.android;
 
 import androidx.hilt.work.HiltWrapper_WorkerFactoryModule;
 import com.fintrack.android.di.DatabaseModule;
+import com.fintrack.android.di.ExchangeRateModule;
 import com.fintrack.android.di.RepositoryModule;
 import com.fintrack.android.ui.screens.account.AccountViewModel_HiltModules;
 import com.fintrack.android.ui.screens.audit.AuditViewModel_HiltModules;
@@ -146,6 +147,7 @@ public final class FinTrackApp_HiltComponents {
       modules = {
           ApplicationContextModule.class,
           DatabaseModule.class,
+          ExchangeRateModule.class,
           ActivityRetainedCBuilderModule.class,
           ServiceCBuilderModule.class,
           HiltWrapper_FragmentGetContextFix_FragmentGetContextFixModule.class,

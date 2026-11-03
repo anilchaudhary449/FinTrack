@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.fintrack.android.PinSecurityTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-02T18:49:14.859Z" hostname="DESKTOP-K6V9G2S" time="0.709">
+  <properties/>
+  <testcase name="pin hashes use unique salts" classname="com.fintrack.android.PinSecurityTest" time="0.444"/>
+  <testcase name="only four to eight digit pins are accepted" classname="com.fintrack.android.PinSecurityTest" time="0.001"/>
+  <testcase name="hashed pin verifies without storing the pin text" classname="com.fintrack.android.PinSecurityTest" time="0.264"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

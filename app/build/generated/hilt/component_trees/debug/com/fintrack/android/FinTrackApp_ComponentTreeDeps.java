@@ -21,6 +21,7 @@ import hilt_aggregated_deps._androidx_hilt_work_HiltWrapper_WorkerFactoryModule;
 import hilt_aggregated_deps._com_fintrack_android_FinTrackApp_GeneratedInjector;
 import hilt_aggregated_deps._com_fintrack_android_MainActivity_GeneratedInjector;
 import hilt_aggregated_deps._com_fintrack_android_di_DatabaseModule;
+import hilt_aggregated_deps._com_fintrack_android_di_ExchangeRateModule;
 import hilt_aggregated_deps._com_fintrack_android_di_RepositoryModule;
 import hilt_aggregated_deps._com_fintrack_android_ui_screens_account_AccountViewModel_HiltModules_BindsModule;
 import hilt_aggregated_deps._com_fintrack_android_ui_screens_account_AccountViewModel_HiltModules_KeyModule;
@@ -99,6 +100,7 @@ import hilt_aggregated_deps._dagger_hilt_android_internal_modules_HiltWrapper_Ac
         _com_fintrack_android_FinTrackApp_GeneratedInjector.class,
         _com_fintrack_android_MainActivity_GeneratedInjector.class,
         _com_fintrack_android_di_DatabaseModule.class,
+        _com_fintrack_android_di_ExchangeRateModule.class,
         _com_fintrack_android_di_RepositoryModule.class,
         _com_fintrack_android_ui_screens_account_AccountViewModel_HiltModules_BindsModule.class,
         _com_fintrack_android_ui_screens_account_AccountViewModel_HiltModules_KeyModule.class,

@@ -3,6 +3,7 @@ package com.fintrack.android.ui.screens.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fintrack.android.data.preferences.UserPreferencesManager
+import com.fintrack.android.domain.repository.ExchangeRateRepository
 import com.fintrack.android.domain.model.*
 import com.fintrack.android.domain.repository.AccountRepository
 import com.fintrack.android.domain.repository.TransactionRepository
@@ -50,23 +51,39 @@ class DashboardViewModel @Inject constructor(
     private val getDashboardSummaryUseCase: GetDashboardSummaryUseCase,
     private val calculateNetWorthUseCase: CalculateNetWorthUseCase,
     private val transactionRepository: TransactionRepository,
-    private val preferencesManager: UserPreferencesManager
+    private val preferencesManager: UserPreferencesManager,
+    private val exchangeRateRepository: ExchangeRateRepository
 ) : ViewModel() {
 
     private val _selectedTimeRange = MutableStateFlow(TimeRange.THIS_MONTH)
     private val _customStart = MutableStateFlow<Long?>(null)
     private val _customEnd = MutableStateFlow<Long?>(null)
 
+    init {
+        viewModelScope.launch { exchangeRateRepository.refreshIfStale() }
+    }
+
     val uiState: StateFlow<DashboardUiState> = combine(
         _selectedTimeRange,
         preferencesManager.userPreferencesFlow,
-        calculateNetWorthUseCase(),
         transactionRepository.getRecentTransactions(8)
-    ) { timeRange, prefs, netWorth, recentTxs ->
-        Tuple4(timeRange, prefs, netWorth, recentTxs)
-    }.flatMapLatest { (timeRange, prefs, netWorth, recentTxs) ->
-        getDashboardSummaryUseCase(timeRange, _customStart.value, _customEnd.value).map { summary ->
-            val spendingList = calculateCategoryBreakdown(recentTxs, summary.totalExpenses)
+    ) { timeRange, prefs, recentTxs ->
+        Triple(timeRange, prefs, recentTxs)
+    }.flatMapLatest { (timeRange, prefs, recentTxs) ->
+        combine(
+            getDashboardSummaryUseCase(
+                timeRange,
+                _customStart.value,
+                _customEnd.value,
+                prefs.defaultCurrency
+            ),
+            calculateNetWorthUseCase(prefs.defaultCurrency)
+        ) { summary, netWorth ->
+            val spendingList = calculateCategoryBreakdown(
+                recentTxs,
+                summary.totalExpenses,
+                prefs.defaultCurrency
+            )
             DashboardUiState(
                 selectedTimeRange = timeRange,
                 summary = summary,
@@ -89,14 +106,23 @@ class DashboardViewModel @Inject constructor(
         _customEnd.value = customEnd
     }
 
-    private fun calculateCategoryBreakdown(transactions: List<Transaction>, totalExpense: BigDecimal): List<CategorySpending> {
+    private fun calculateCategoryBreakdown(
+        transactions: List<Transaction>,
+        totalExpense: BigDecimal,
+        displayCurrency: String
+    ): List<CategorySpending> {
         val expenses = transactions.filter { it.type == TransactionType.EXPENSE }
         if (expenses.isEmpty() || totalExpense.compareTo(BigDecimal.ZERO) <= 0) return emptyList()
 
         return expenses.groupBy { it.categoryId ?: 0L }
             .map { (catId, txs) ->
                 val first = txs.first()
-                val sum = txs.fold(BigDecimal.ZERO) { acc, t -> acc.add(t.amount) }
+                val sum = txs.fold(BigDecimal.ZERO) { acc, transaction ->
+                    val converted = exchangeRateRepository.snapshot.value
+                        ?.convert(transaction.amount, transaction.currency, displayCurrency)
+                        ?: transaction.amount
+                    acc.add(converted)
+                }
                 val percentage = sum.divide(totalExpense, 4, RoundingMode.HALF_EVEN)
                     .multiply(BigDecimal(100)).toFloat()
                 CategorySpending(
@@ -111,5 +137,4 @@ class DashboardViewModel @Inject constructor(
     }
 }
 
-private data class Tuple4<A, B, C, D>(val a: A, val b: B, val c: C, val d: D)
 

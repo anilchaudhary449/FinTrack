@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.fintrack.android.FinancialCalculationsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-02T16:08:19" hostname="DESKTOP-K6V9G2S" time="0.03">
+<testsuite name="com.fintrack.android.FinancialCalculationsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-02T18:49:14.835Z" hostname="DESKTOP-K6V9G2S" time="0.02">
   <properties/>
-  <testcase name="budget calculation sets warning status at or above 80 percent" classname="com.fintrack.android.FinancialCalculationsTest" time="0.009"/>
-  <testcase name="budget calculation sets normal status when under threshold" classname="com.fintrack.android.FinancialCalculationsTest" time="0.0"/>
-  <testcase name="net worth equals total assets minus total liabilities" classname="com.fintrack.android.FinancialCalculationsTest" time="0.001"/>
-  <testcase name="currency formatting with NPR symbol formats correctly" classname="com.fintrack.android.FinancialCalculationsTest" time="0.01"/>
-  <testcase name="savings goal progress percentage and completion logic" classname="com.fintrack.android.FinancialCalculationsTest" time="0.006"/>
+  <testcase name="budget calculation sets warning status at or above 80 percent" classname="com.fintrack.android.FinancialCalculationsTest" time="0.003"/>
+  <testcase name="budget calculation sets normal status when under threshold" classname="com.fintrack.android.FinancialCalculationsTest" time="0.001"/>
+  <testcase name="net worth equals total assets minus total liabilities" classname="com.fintrack.android.FinancialCalculationsTest" time="0.0"/>
+  <testcase name="currency formatting with NPR symbol formats correctly" classname="com.fintrack.android.FinancialCalculationsTest" time="0.009"/>
+  <testcase name="savings goal progress percentage and completion logic" classname="com.fintrack.android.FinancialCalculationsTest" time="0.004"/>
   <testcase name="currency formatting handles arbitrary decimal precision without loss" classname="com.fintrack.android.FinancialCalculationsTest" time="0.0"/>
   <testcase name="monetary arithmetic uses banker rounding without IEEE 754 precision errors" classname="com.fintrack.android.FinancialCalculationsTest" time="0.0"/>
-  <testcase name="budget calculation sets exceeded status when spent exceeds limit" classname="com.fintrack.android.FinancialCalculationsTest" time="0.0"/>
+  <testcase name="budget calculation sets exceeded status when spent exceeds limit" classname="com.fintrack.android.FinancialCalculationsTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

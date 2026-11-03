@@ -18,6 +18,7 @@ import com.fintrack.android.data.repository.AuditRepositoryImpl;
 import com.fintrack.android.data.repository.BudgetRepositoryImpl;
 import com.fintrack.android.data.repository.CategoryRepositoryImpl;
 import com.fintrack.android.data.repository.DebtRepositoryImpl;
+import com.fintrack.android.data.repository.ExchangeRateRepositoryImpl;
 import com.fintrack.android.data.repository.ReconciliationRepositoryImpl;
 import com.fintrack.android.data.repository.RecurringRepositoryImpl;
 import com.fintrack.android.data.repository.SavingsRepositoryImpl;
@@ -61,6 +62,9 @@ import com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel;
 import com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel_HiltModules;
 import com.fintrack.android.ui.screens.transaction.TransactionListViewModel;
 import com.fintrack.android.ui.screens.transaction.TransactionListViewModel_HiltModules;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import dagger.hilt.android.ActivityRetainedLifecycle;
 import dagger.hilt.android.ViewModelLifecycle;
 import dagger.hilt.android.internal.builders.ActivityComponentBuilder;
@@ -81,10 +85,8 @@ import dagger.internal.DoubleCheck;
 import dagger.internal.IdentifierNameString;
 import dagger.internal.KeepFieldType;
 import dagger.internal.LazyClassKeyMap;
-import dagger.internal.MapBuilder;
 import dagger.internal.Preconditions;
 import dagger.internal.Provider;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -423,7 +425,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, Boolean> getViewModelKeys() {
-      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(16).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_account_AccountViewModel, AccountViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel, AddEditTransactionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_audit_AuditViewModel, AuditViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_budget_BudgetViewModel, BudgetViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_calendar_CalendarViewModel, CalendarViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_dashboard_DashboardViewModel, DashboardViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_debt_DebtViewModel, DebtViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_insights_InsightsViewModel, InsightsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_networth_NetWorthViewModel, NetWorthViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_onboarding_OnboardingViewModel, OnboardingViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_reports_ReportsViewModel, ReportsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_savings_SavingsViewModel, SavingsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_settings_SettingsViewModel, SettingsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_splash_SplashViewModel, SplashViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel, TransactionDetailsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionListViewModel, TransactionListViewModel_HiltModules.KeyModule.provide()).build());
+      return LazyClassKeyMap.<Boolean>of(ImmutableMap.<String, Boolean>builderWithExpectedSize(16).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_account_AccountViewModel, AccountViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel, AddEditTransactionViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_audit_AuditViewModel, AuditViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_budget_BudgetViewModel, BudgetViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_calendar_CalendarViewModel, CalendarViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_dashboard_DashboardViewModel, DashboardViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_debt_DebtViewModel, DebtViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_insights_InsightsViewModel, InsightsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_networth_NetWorthViewModel, NetWorthViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_onboarding_OnboardingViewModel, OnboardingViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_reports_ReportsViewModel, ReportsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_savings_SavingsViewModel, SavingsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_settings_SettingsViewModel, SettingsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_splash_SplashViewModel, SplashViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel, TransactionDetailsViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionListViewModel, TransactionListViewModel_HiltModules.KeyModule.provide()).build());
     }
 
     @Override
@@ -441,6 +443,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       return new ViewCBuilder(singletonCImpl, activityRetainedCImpl, activityCImpl);
     }
 
+    @CanIgnoreReturnValue
     private MainActivity injectMainActivity2(MainActivity instance) {
       MainActivity_MembersInjector.injectPreferencesManager(instance, singletonCImpl.userPreferencesManagerProvider.get());
       return instance;
@@ -448,85 +451,85 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
-
-      static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
-
-      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
-
-      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
-
-      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
-
-      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
-
-      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
-
-      static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
+      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionListViewModel = "com.fintrack.android.ui.screens.transaction.TransactionListViewModel";
 
+      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
+
+      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
+
       static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
+
+      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
 
-      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
-
-      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
-
-      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
-
-      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
+      static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
 
       static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
 
-      @KeepFieldType
-      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
+      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
 
-      @KeepFieldType
-      SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
+      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
 
-      @KeepFieldType
-      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
+      static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
 
-      @KeepFieldType
-      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
+      static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
 
-      @KeepFieldType
-      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
+      static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
 
-      @KeepFieldType
-      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
+      static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
 
-      @KeepFieldType
-      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
-
-      @KeepFieldType
-      DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
-
-      @KeepFieldType
-      TransactionListViewModel com_fintrack_android_ui_screens_transaction_TransactionListViewModel2;
-
-      @KeepFieldType
-      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
-
-      @KeepFieldType
-      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
-
-      @KeepFieldType
-      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
-
-      @KeepFieldType
-      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
-
-      @KeepFieldType
-      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+      static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
 
       @KeepFieldType
       CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
 
       @KeepFieldType
+      TransactionListViewModel com_fintrack_android_ui_screens_transaction_TransactionListViewModel2;
+
+      @KeepFieldType
+      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
+
+      @KeepFieldType
+      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
+
+      @KeepFieldType
+      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
+
+      @KeepFieldType
+      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
+
+      @KeepFieldType
+      TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
+
+      @KeepFieldType
+      SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
+
+      @KeepFieldType
       SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
+
+      @KeepFieldType
+      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
+
+      @KeepFieldType
+      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
+
+      @KeepFieldType
+      SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
+
+      @KeepFieldType
+      DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
+
+      @KeepFieldType
+      NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+
+      @KeepFieldType
+      BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
+
+      @KeepFieldType
+      DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
     }
   }
 
@@ -586,11 +589,11 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
     }
 
     private GetDashboardSummaryUseCase getDashboardSummaryUseCase() {
-      return new GetDashboardSummaryUseCase(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.debtRepositoryImplProvider.get(), singletonCImpl.budgetRepositoryImplProvider.get(), singletonCImpl.recurringRepositoryImplProvider.get());
+      return new GetDashboardSummaryUseCase(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.debtRepositoryImplProvider.get(), singletonCImpl.budgetRepositoryImplProvider.get(), singletonCImpl.recurringRepositoryImplProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
     }
 
     private CalculateNetWorthUseCase calculateNetWorthUseCase() {
-      return new CalculateNetWorthUseCase(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.debtRepositoryImplProvider.get(), singletonCImpl.savingsRepositoryImplProvider.get());
+      return new CalculateNetWorthUseCase(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.debtRepositoryImplProvider.get(), singletonCImpl.savingsRepositoryImplProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
     }
 
     private GenerateSpendingInsightsUseCase generateSpendingInsightsUseCase() {
@@ -620,77 +623,53 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(16).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_account_AccountViewModel, ((Provider) accountViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel, ((Provider) addEditTransactionViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_audit_AuditViewModel, ((Provider) auditViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_budget_BudgetViewModel, ((Provider) budgetViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_calendar_CalendarViewModel, ((Provider) calendarViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_dashboard_DashboardViewModel, ((Provider) dashboardViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_debt_DebtViewModel, ((Provider) debtViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_insights_InsightsViewModel, ((Provider) insightsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_networth_NetWorthViewModel, ((Provider) netWorthViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_onboarding_OnboardingViewModel, ((Provider) onboardingViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_reports_ReportsViewModel, ((Provider) reportsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_savings_SavingsViewModel, ((Provider) savingsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_settings_SettingsViewModel, ((Provider) settingsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_splash_SplashViewModel, ((Provider) splashViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel, ((Provider) transactionDetailsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionListViewModel, ((Provider) transactionListViewModelProvider)).build());
+      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(ImmutableMap.<String, javax.inject.Provider<ViewModel>>builderWithExpectedSize(16).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_account_AccountViewModel, ((Provider) accountViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel, ((Provider) addEditTransactionViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_audit_AuditViewModel, ((Provider) auditViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_budget_BudgetViewModel, ((Provider) budgetViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_calendar_CalendarViewModel, ((Provider) calendarViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_dashboard_DashboardViewModel, ((Provider) dashboardViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_debt_DebtViewModel, ((Provider) debtViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_insights_InsightsViewModel, ((Provider) insightsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_networth_NetWorthViewModel, ((Provider) netWorthViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_onboarding_OnboardingViewModel, ((Provider) onboardingViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_reports_ReportsViewModel, ((Provider) reportsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_savings_SavingsViewModel, ((Provider) savingsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_settings_SettingsViewModel, ((Provider) settingsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_splash_SplashViewModel, ((Provider) splashViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel, ((Provider) transactionDetailsViewModelProvider)).put(LazyClassKeyProvider.com_fintrack_android_ui_screens_transaction_TransactionListViewModel, ((Provider) transactionListViewModelProvider)).build());
     }
 
     @Override
     public Map<Class<?>, Object> getHiltViewModelAssistedMap() {
-      return Collections.<Class<?>, Object>emptyMap();
+      return ImmutableMap.<Class<?>, Object>of();
     }
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
-
-      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
-
-      static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
-
-      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
-
-      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
-
-      static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
+      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
 
       static String com_fintrack_android_ui_screens_dashboard_DashboardViewModel = "com.fintrack.android.ui.screens.dashboard.DashboardViewModel";
-
-      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
-
-      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
-
-      static String com_fintrack_android_ui_screens_onboarding_OnboardingViewModel = "com.fintrack.android.ui.screens.onboarding.OnboardingViewModel";
 
       static String com_fintrack_android_ui_screens_savings_SavingsViewModel = "com.fintrack.android.ui.screens.savings.SavingsViewModel";
 
       static String com_fintrack_android_ui_screens_budget_BudgetViewModel = "com.fintrack.android.ui.screens.budget.BudgetViewModel";
 
+      static String com_fintrack_android_ui_screens_account_AccountViewModel = "com.fintrack.android.ui.screens.account.AccountViewModel";
+
+      static String com_fintrack_android_ui_screens_debt_DebtViewModel = "com.fintrack.android.ui.screens.debt.DebtViewModel";
+
       static String com_fintrack_android_ui_screens_networth_NetWorthViewModel = "com.fintrack.android.ui.screens.networth.NetWorthViewModel";
+
+      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
+
+      static String com_fintrack_android_ui_screens_splash_SplashViewModel = "com.fintrack.android.ui.screens.splash.SplashViewModel";
+
+      static String com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel = "com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel";
+
+      static String com_fintrack_android_ui_screens_audit_AuditViewModel = "com.fintrack.android.ui.screens.audit.AuditViewModel";
+
+      static String com_fintrack_android_ui_screens_calendar_CalendarViewModel = "com.fintrack.android.ui.screens.calendar.CalendarViewModel";
+
+      static String com_fintrack_android_ui_screens_settings_SettingsViewModel = "com.fintrack.android.ui.screens.settings.SettingsViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionListViewModel = "com.fintrack.android.ui.screens.transaction.TransactionListViewModel";
 
-      static String com_fintrack_android_ui_screens_insights_InsightsViewModel = "com.fintrack.android.ui.screens.insights.InsightsViewModel";
+      static String com_fintrack_android_ui_screens_reports_ReportsViewModel = "com.fintrack.android.ui.screens.reports.ReportsViewModel";
 
       static String com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel = "com.fintrack.android.ui.screens.transaction.TransactionDetailsViewModel";
 
       @KeepFieldType
-      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
-
-      @KeepFieldType
-      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
-
-      @KeepFieldType
-      SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
-
-      @KeepFieldType
-      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
-
-      @KeepFieldType
-      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
-
-      @KeepFieldType
-      DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
+      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
 
       @KeepFieldType
       DashboardViewModel com_fintrack_android_ui_screens_dashboard_DashboardViewModel2;
-
-      @KeepFieldType
-      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
-
-      @KeepFieldType
-      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
-
-      @KeepFieldType
-      OnboardingViewModel com_fintrack_android_ui_screens_onboarding_OnboardingViewModel2;
 
       @KeepFieldType
       SavingsViewModel com_fintrack_android_ui_screens_savings_SavingsViewModel2;
@@ -699,13 +678,37 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       BudgetViewModel com_fintrack_android_ui_screens_budget_BudgetViewModel2;
 
       @KeepFieldType
+      AccountViewModel com_fintrack_android_ui_screens_account_AccountViewModel2;
+
+      @KeepFieldType
+      DebtViewModel com_fintrack_android_ui_screens_debt_DebtViewModel2;
+
+      @KeepFieldType
       NetWorthViewModel com_fintrack_android_ui_screens_networth_NetWorthViewModel2;
+
+      @KeepFieldType
+      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
+
+      @KeepFieldType
+      SplashViewModel com_fintrack_android_ui_screens_splash_SplashViewModel2;
+
+      @KeepFieldType
+      AddEditTransactionViewModel com_fintrack_android_ui_screens_transaction_AddEditTransactionViewModel2;
+
+      @KeepFieldType
+      AuditViewModel com_fintrack_android_ui_screens_audit_AuditViewModel2;
+
+      @KeepFieldType
+      CalendarViewModel com_fintrack_android_ui_screens_calendar_CalendarViewModel2;
+
+      @KeepFieldType
+      SettingsViewModel com_fintrack_android_ui_screens_settings_SettingsViewModel2;
 
       @KeepFieldType
       TransactionListViewModel com_fintrack_android_ui_screens_transaction_TransactionListViewModel2;
 
       @KeepFieldType
-      InsightsViewModel com_fintrack_android_ui_screens_insights_InsightsViewModel2;
+      ReportsViewModel com_fintrack_android_ui_screens_reports_ReportsViewModel2;
 
       @KeepFieldType
       TransactionDetailsViewModel com_fintrack_android_ui_screens_transaction_TransactionDetailsViewModel2;
@@ -733,10 +736,10 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       public T get() {
         switch (id) {
           case 0: // com.fintrack.android.ui.screens.account.AccountViewModel 
-          return (T) new AccountViewModel(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.reconciliationRepositoryImplProvider.get(), viewModelCImpl.transferFundsUseCase());
+          return (T) new AccountViewModel(singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.reconciliationRepositoryImplProvider.get(), viewModelCImpl.transferFundsUseCase(), singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
 
           case 1: // com.fintrack.android.ui.screens.transaction.AddEditTransactionViewModel 
-          return (T) new AddEditTransactionViewModel(singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.categoryRepositoryImplProvider.get(), viewModelCImpl.transferFundsUseCase(), viewModelCImpl.savedStateHandle);
+          return (T) new AddEditTransactionViewModel(singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.categoryRepositoryImplProvider.get(), viewModelCImpl.transferFundsUseCase(), ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule), viewModelCImpl.savedStateHandle);
 
           case 2: // com.fintrack.android.ui.screens.audit.AuditViewModel 
           return (T) new AuditViewModel(singletonCImpl.auditRepositoryImplProvider.get());
@@ -748,7 +751,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
           return (T) new CalendarViewModel(singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.recurringRepositoryImplProvider.get(), singletonCImpl.debtRepositoryImplProvider.get());
 
           case 5: // com.fintrack.android.ui.screens.dashboard.DashboardViewModel 
-          return (T) new DashboardViewModel(viewModelCImpl.getDashboardSummaryUseCase(), viewModelCImpl.calculateNetWorthUseCase(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.userPreferencesManagerProvider.get());
+          return (T) new DashboardViewModel(viewModelCImpl.getDashboardSummaryUseCase(), viewModelCImpl.calculateNetWorthUseCase(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
 
           case 6: // com.fintrack.android.ui.screens.debt.DebtViewModel 
           return (T) new DebtViewModel(singletonCImpl.debtRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get());
@@ -757,19 +760,19 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
           return (T) new InsightsViewModel(viewModelCImpl.generateSpendingInsightsUseCase());
 
           case 8: // com.fintrack.android.ui.screens.networth.NetWorthViewModel 
-          return (T) new NetWorthViewModel(viewModelCImpl.calculateNetWorthUseCase());
+          return (T) new NetWorthViewModel(viewModelCImpl.calculateNetWorthUseCase(), singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
 
           case 9: // com.fintrack.android.ui.screens.onboarding.OnboardingViewModel 
           return (T) new OnboardingViewModel(singletonCImpl.userPreferencesManagerProvider.get());
 
           case 10: // com.fintrack.android.ui.screens.reports.ReportsViewModel 
-          return (T) new ReportsViewModel(viewModelCImpl.getDashboardSummaryUseCase(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.userPreferencesManagerProvider.get());
+          return (T) new ReportsViewModel(viewModelCImpl.getDashboardSummaryUseCase(), singletonCImpl.transactionRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get(), singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
 
           case 11: // com.fintrack.android.ui.screens.savings.SavingsViewModel 
           return (T) new SavingsViewModel(singletonCImpl.savingsRepositoryImplProvider.get(), singletonCImpl.accountRepositoryImplProvider.get());
 
           case 12: // com.fintrack.android.ui.screens.settings.SettingsViewModel 
-          return (T) new SettingsViewModel(singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.jsonBackupManagerProvider.get());
+          return (T) new SettingsViewModel(singletonCImpl.userPreferencesManagerProvider.get(), singletonCImpl.jsonBackupManagerProvider.get(), singletonCImpl.exchangeRateRepositoryImplProvider.get());
 
           case 13: // com.fintrack.android.ui.screens.splash.SplashViewModel 
           return (T) new SplashViewModel(singletonCImpl.userPreferencesManagerProvider.get());
@@ -874,6 +877,8 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     private Provider<ReconciliationRepositoryImpl> reconciliationRepositoryImplProvider;
 
+    private Provider<ExchangeRateRepositoryImpl> exchangeRateRepositoryImplProvider;
+
     private Provider<CategoryRepositoryImpl> categoryRepositoryImplProvider;
 
     private Provider<AuditRepositoryImpl> auditRepositoryImplProvider;
@@ -893,7 +898,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
     }
 
     private HiltWorkerFactory hiltWorkerFactory() {
-      return WorkerFactoryModule_ProvideFactoryFactory.provideFactory(Collections.<String, javax.inject.Provider<WorkerAssistedFactory<? extends ListenableWorker>>>emptyMap());
+      return WorkerFactoryModule_ProvideFactoryFactory.provideFactory(ImmutableMap.<String, javax.inject.Provider<WorkerAssistedFactory<? extends ListenableWorker>>>of());
     }
 
     @SuppressWarnings("unchecked")
@@ -905,12 +910,13 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       this.userPreferencesManagerProvider = DoubleCheck.provider(new SwitchingProvider<UserPreferencesManager>(singletonCImpl, 4));
       this.accountRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<AccountRepositoryImpl>(singletonCImpl, 5));
       this.reconciliationRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<ReconciliationRepositoryImpl>(singletonCImpl, 6));
-      this.categoryRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<CategoryRepositoryImpl>(singletonCImpl, 7));
-      this.auditRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<AuditRepositoryImpl>(singletonCImpl, 8));
-      this.budgetRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<BudgetRepositoryImpl>(singletonCImpl, 9));
-      this.debtRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<DebtRepositoryImpl>(singletonCImpl, 10));
-      this.savingsRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<SavingsRepositoryImpl>(singletonCImpl, 11));
-      this.jsonBackupManagerProvider = DoubleCheck.provider(new SwitchingProvider<JsonBackupManager>(singletonCImpl, 12));
+      this.exchangeRateRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<ExchangeRateRepositoryImpl>(singletonCImpl, 7));
+      this.categoryRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<CategoryRepositoryImpl>(singletonCImpl, 8));
+      this.auditRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<AuditRepositoryImpl>(singletonCImpl, 9));
+      this.budgetRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<BudgetRepositoryImpl>(singletonCImpl, 10));
+      this.debtRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<DebtRepositoryImpl>(singletonCImpl, 11));
+      this.savingsRepositoryImplProvider = DoubleCheck.provider(new SwitchingProvider<SavingsRepositoryImpl>(singletonCImpl, 12));
+      this.jsonBackupManagerProvider = DoubleCheck.provider(new SwitchingProvider<JsonBackupManager>(singletonCImpl, 13));
     }
 
     @Override
@@ -925,7 +931,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
 
     @Override
     public Set<Boolean> getDisableFragmentGetContextFix() {
-      return Collections.<Boolean>emptySet();
+      return ImmutableSet.<Boolean>of();
     }
 
     @Override
@@ -938,6 +944,7 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
       return new ServiceCBuilder(singletonCImpl);
     }
 
+    @CanIgnoreReturnValue
     private FinTrackApp injectFinTrackApp2(FinTrackApp instance) {
       FinTrackApp_MembersInjector.injectWorkerFactory(instance, hiltWorkerFactory());
       return instance;
@@ -978,22 +985,25 @@ public final class DaggerFinTrackApp_HiltComponents_SingletonC {
           case 6: // com.fintrack.android.data.repository.ReconciliationRepositoryImpl 
           return (T) new ReconciliationRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 7: // com.fintrack.android.data.repository.CategoryRepositoryImpl 
+          case 7: // com.fintrack.android.data.repository.ExchangeRateRepositoryImpl 
+          return (T) new ExchangeRateRepositoryImpl(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
+
+          case 8: // com.fintrack.android.data.repository.CategoryRepositoryImpl 
           return (T) new CategoryRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 8: // com.fintrack.android.data.repository.AuditRepositoryImpl 
+          case 9: // com.fintrack.android.data.repository.AuditRepositoryImpl 
           return (T) new AuditRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 9: // com.fintrack.android.data.repository.BudgetRepositoryImpl 
+          case 10: // com.fintrack.android.data.repository.BudgetRepositoryImpl 
           return (T) new BudgetRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 10: // com.fintrack.android.data.repository.DebtRepositoryImpl 
+          case 11: // com.fintrack.android.data.repository.DebtRepositoryImpl 
           return (T) new DebtRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 11: // com.fintrack.android.data.repository.SavingsRepositoryImpl 
+          case 12: // com.fintrack.android.data.repository.SavingsRepositoryImpl 
           return (T) new SavingsRepositoryImpl(singletonCImpl.provideAppDatabaseProvider.get());
 
-          case 12: // com.fintrack.android.data.export.JsonBackupManager 
+          case 13: // com.fintrack.android.data.export.JsonBackupManager 
           return (T) new JsonBackupManager(singletonCImpl.provideAppDatabaseProvider.get());
 
           default: throw new AssertionError(id);

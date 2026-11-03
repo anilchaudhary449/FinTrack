@@ -544,6 +544,79 @@ public final class CategoryDao_Impl implements CategoryDao {
     }, $completion);
   }
 
+  @Override
+  public Object getAllCategoriesDirect(
+      final Continuation<? super List<CategoryEntity>> $completion) {
+    final String _sql = "SELECT `categories`.`id` AS `id`, `categories`.`name` AS `name`, `categories`.`type` AS `type`, `categories`.`iconName` AS `iconName`, `categories`.`colorHex` AS `colorHex`, `categories`.`parentCategoryId` AS `parentCategoryId`, `categories`.`isDefault` AS `isDefault`, `categories`.`isFavorite` AS `isFavorite`, `categories`.`createdAt` AS `createdAt` FROM categories";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
+    return CoroutinesRoom.execute(__db, false, _cancellationSignal, new Callable<List<CategoryEntity>>() {
+      @Override
+      @NonNull
+      public List<CategoryEntity> call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfId = 0;
+          final int _cursorIndexOfName = 1;
+          final int _cursorIndexOfType = 2;
+          final int _cursorIndexOfIconName = 3;
+          final int _cursorIndexOfColorHex = 4;
+          final int _cursorIndexOfParentCategoryId = 5;
+          final int _cursorIndexOfIsDefault = 6;
+          final int _cursorIndexOfIsFavorite = 7;
+          final int _cursorIndexOfCreatedAt = 8;
+          final List<CategoryEntity> _result = new ArrayList<CategoryEntity>(_cursor.getCount());
+          while (_cursor.moveToNext()) {
+            final CategoryEntity _item;
+            final long _tmpId;
+            _tmpId = _cursor.getLong(_cursorIndexOfId);
+            final String _tmpName;
+            _tmpName = _cursor.getString(_cursorIndexOfName);
+            final CategoryType _tmpType;
+            final String _tmp;
+            if (_cursor.isNull(_cursorIndexOfType)) {
+              _tmp = null;
+            } else {
+              _tmp = _cursor.getString(_cursorIndexOfType);
+            }
+            final CategoryType _tmp_1 = __roomTypeConverters.toCategoryType(_tmp);
+            if (_tmp_1 == null) {
+              throw new IllegalStateException("Expected NON-NULL 'com.fintrack.android.domain.model.CategoryType', but it was NULL.");
+            } else {
+              _tmpType = _tmp_1;
+            }
+            final String _tmpIconName;
+            _tmpIconName = _cursor.getString(_cursorIndexOfIconName);
+            final String _tmpColorHex;
+            _tmpColorHex = _cursor.getString(_cursorIndexOfColorHex);
+            final Long _tmpParentCategoryId;
+            if (_cursor.isNull(_cursorIndexOfParentCategoryId)) {
+              _tmpParentCategoryId = null;
+            } else {
+              _tmpParentCategoryId = _cursor.getLong(_cursorIndexOfParentCategoryId);
+            }
+            final boolean _tmpIsDefault;
+            final int _tmp_2;
+            _tmp_2 = _cursor.getInt(_cursorIndexOfIsDefault);
+            _tmpIsDefault = _tmp_2 != 0;
+            final boolean _tmpIsFavorite;
+            final int _tmp_3;
+            _tmp_3 = _cursor.getInt(_cursorIndexOfIsFavorite);
+            _tmpIsFavorite = _tmp_3 != 0;
+            final long _tmpCreatedAt;
+            _tmpCreatedAt = _cursor.getLong(_cursorIndexOfCreatedAt);
+            _item = new CategoryEntity(_tmpId,_tmpName,_tmpType,_tmpIconName,_tmpColorHex,_tmpParentCategoryId,_tmpIsDefault,_tmpIsFavorite,_tmpCreatedAt);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+          _statement.release();
+        }
+      }
+    }, $completion);
+  }
+
   @NonNull
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();

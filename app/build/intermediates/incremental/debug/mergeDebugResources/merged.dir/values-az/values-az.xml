@@ -38,13 +38,35 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Gələn zəng göstərilir"</string>
     <string msgid="406453423630273620" name="close_drawer">"Naviqasiya menyusunu bağlayın"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Səhifəni bağlayın"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Aktiv edin</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s Google Play xidmətlərini aktiv edənə kimi işləməyəcək.</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play xidmətlərini aktiv edin</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Quraşdırın</string>
+    <string name="common_google_play_services_install_text">%1$s cihazınızda mövcud olmayan Google Play xidmətləri olmadan çalışmayacaq.</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play xidmətlərini əldə edin</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play xidmətlərinin əlçatanlığı</string>
+    <string name="common_google_play_services_notification_ticker">Google Play xidmətləri xətası</string>
+    <string name="common_google_play_services_unknown_issue">%1$s tətbiqi ilə Google Play xidmətləri arasında problem var. Daha sonra yenidən cəhd edin.</string>
+    <string name="common_google_play_services_unsupported_text">Cihazınız tərəfindən dəstəklənməyən Google Play xidmətləri olmadan %1$s tətbiqi işləməyəcək.</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Güncəlləyin</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s Google Play xidmətləri yeniləmə halda çalışmaz.</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Google Play xidmətlərini güncəlləşdirin</string>
+    <string name="common_google_play_services_updating_text">%1$s hal-hazırda güncəllənən Google Play xidmətləri olmadan çalışmayacaq.</string>
+    <string name="common_google_play_services_wear_update_text">Google Play xidmətlərinin yeni versiyası lazımdır. Qısa müddətə özünü yeniləyəcək.</string>
+    <string name="common_open_on_phone">Telefonda açın</string>
+    <string name="common_signin_button_text">Daxil olun</string>
+    <string name="common_signin_button_text_long">Google ilə daxil olun</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"Parol istifadə edin"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link buferə kopyalandı"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Yanlış daxiletmə"</string>
     <string msgid="4776854077120974966" name="default_error_msg">"Naməlum xəta"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Popap Pəncərəsi"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Aşağı açılan menyu"</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"Davam etmək üçün üz və ya ekran kilidinizdən istifadə edin"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"Davam etmək üçün üzünüzdən istifadə edin"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Linki kopyalayın"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Brauzerdə açın"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Linki paylaşın"</string>
     <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Barmaq izi ikonası"</string>
     <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Barmaq izi sensoruna klikləyin"</string>
     <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Barmaq izi avadanlığı əlçatan deyil."</string>
@@ -117,10 +139,31 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Alət izahını göstərin"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Alət izahı"</string>
+    <string name="native_body">Əsas</string>
+    <string name="native_headline">Başlıq</string>
+    <string name="native_media_view">Media Paneli</string>
     <string msgid="542007171693138492" name="navigation_menu">"Naviqasiya menyusu"</string>
     <string msgid="6610465462668679431" name="not_selected">"Seçilməyib"</string>
+    <string name="notifications_permission_confirm">İcazə verin</string>
+    <string name="notifications_permission_decline">İcazə verməyin</string>
+    <string name="notifications_permission_title">Tətbiqə sizə bildirişlər göndərmək icazəsi verilsin?</string>
+    <string name="offline_dialog_image_description">İkona</string>
+    <string name="offline_dialog_text">Maraqlandığınız üçün təşəkkürlər.\nYenidən onlayn olduqda ətraflı məlumat verəcəyik.</string>
+    <string name="offline_notification_title">Yenidən onlaynsınız! Qaldığınız yerdən davam edək</string>
+    <string name="offline_notification_title_with_advertiser">Yenidən onlaynsınız! %s haqqında məlumat almağa davam edin</string>
+    <string name="offline_opt_in_confirm">OK</string>
+    <string name="offline_opt_in_decline">Xeyr, təşəkkür</string>
+    <string name="offline_opt_in_message">Sizə reklamçının saytına keçid olan bildiriş göndərəcəyik.</string>
+    <string name="offline_opt_in_title">Yenidən onlayn olduqda reklamı açın.</string>
     <string msgid="5941395253238309765" name="range_end">"Sıranın sonu"</string>
     <string msgid="7097486360902471446" name="range_start">"Sıranın başlanğıcı"</string>
+    <string name="s1">Şəkli yadda saxlayın</string>
+    <string name="s2">Reklama təsvirləri Şəkil qalereyasında saxlamağa icazə verilsin?</string>
+    <string name="s3">Qəbul edin</string>
+    <string name="s4">Rədd edin</string>
+    <string name="s5">Təqvim tədbiri yaradın</string>
+    <string name="s6">Təqvim tədbiri yaratmaq üçün Reklama icazə verilsin?</string>
+    <string name="s7">Test Reklamı</string>
     <string msgid="5659570757430909869" name="screen_lock_prompt_message">"Davam etmək üçün ekran kilidinizi daxil edin"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Axtarın"</string>
     <string msgid="6043586758067023" name="selected">"Seçilib"</string>
@@ -140,4 +183,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"Barmaq izindən istifadə edin"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Barmaq izi və ya ekran kilidindən istifadə edin"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"Ekran kilidi istifadə edin"</string>
+    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

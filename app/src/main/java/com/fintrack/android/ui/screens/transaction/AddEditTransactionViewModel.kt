@@ -1,8 +1,11 @@
 package com.fintrack.android.ui.screens.transaction
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.qualifiers.ApplicationContext
 import com.fintrack.android.domain.model.*
 import com.fintrack.android.domain.repository.AccountRepository
 import com.fintrack.android.domain.repository.CategoryRepository
@@ -10,8 +13,13 @@ import com.fintrack.android.domain.repository.TransactionRepository
 import com.fintrack.android.domain.usecase.TransferFundsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.IOException
 import java.math.BigDecimal
+import java.util.UUID
 import javax.inject.Inject
 
 data class AddEditTransactionUiState(
@@ -38,6 +46,7 @@ class AddEditTransactionViewModel @Inject constructor(
     private val accountRepository: AccountRepository,
     private val categoryRepository: CategoryRepository,
     private val transferFundsUseCase: TransferFundsUseCase,
+    @ApplicationContext private val context: Context,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -144,6 +153,36 @@ class AddEditTransactionViewModel @Inject constructor(
         _uiState.update { it.copy(receiptUri = uri) }
     }
 
+    fun onReceiptSelected(uri: Uri) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+            val storedUri = withContext(Dispatchers.IO) {
+                runCatching {
+                    val extension = when (context.contentResolver.getType(uri)?.lowercase()) {
+                        "image/jpeg" -> "jpg"
+                        "image/png" -> "png"
+                        "image/webp" -> "webp"
+                        "image/heic" -> "heic"
+                        else -> "img"
+                    }
+                    val receiptDirectory = File(context.filesDir, "receipts").apply { mkdirs() }
+                    val destination = File(receiptDirectory, "${UUID.randomUUID()}.$extension")
+                    val input = context.contentResolver.openInputStream(uri)
+                        ?: throw IOException("Could not open selected receipt")
+                    input.use { source -> destination.outputStream().use(source::copyTo) }
+                    Uri.fromFile(destination).toString()
+                }
+            }
+            storedUri.onSuccess { localUri ->
+                _uiState.update { it.copy(receiptUri = localUri, isLoading = false) }
+            }.onFailure { error ->
+                _uiState.update {
+                    it.copy(isLoading = false, errorMessage = "Could not load receipt: ${error.message}")
+                }
+            }
+        }
+    }
+
     fun saveTransaction() {
         val state = _uiState.value
 
@@ -186,7 +225,8 @@ class AddEditTransactionViewModel @Inject constructor(
                         paymentMethod = state.selectedPaymentMethod,
                         transactionDate = state.transactionDate,
                         notes = state.notes,
-                        receiptUri = state.receiptUri
+                        receiptUri = state.receiptUri,
+                        currency = state.accounts.first { it.id == state.selectedAccountId }.currency
                     )
 
                     if (state.id != null && state.id > 0) {

@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -39,6 +40,7 @@ fun DashboardScreen(
     onNavigateToNetWorth: () -> Unit,
     onNavigateToInsights: () -> Unit,
     onNavigateToCalendar: () -> Unit,
+    adsEnabled: Boolean = false,
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -47,6 +49,20 @@ fun DashboardScreen(
         topBar = {
             FinTopBar(
                 title = "FinTrack",
+                titleContent = {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.AccountBalanceWallet,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Column {
+                            Text("FinTrack", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                            Text("Personal finance", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                },
                 actions = {
                     IconButton(onClick = onNavigateToInsights) {
                         Icon(imageVector = Icons.Default.Lightbulb, contentDescription = "Insights")
@@ -116,7 +132,8 @@ fun DashboardScreen(
                     Spacer(modifier = Modifier.height(16.dp))
                     FinBarChart(
                         incomeAmount = state.summary.totalIncome,
-                        expenseAmount = state.summary.totalExpenses
+                        expenseAmount = state.summary.totalExpenses,
+                        currencyCode = state.defaultCurrency
                     )
                 }
             }
@@ -185,6 +202,14 @@ fun DashboardScreen(
                         isBikramSambat = state.isBikramSambatEnabled,
                         onClick = { onNavigateToTransactionDetails(tx.id) }
                     )
+                }
+            }
+
+            if (adsEnabled) {
+                item {
+                    FinCard {
+                        FinTrackBannerAd()
+                    }
                 }
             }
         }

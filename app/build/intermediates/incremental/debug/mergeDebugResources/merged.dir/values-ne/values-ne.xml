@@ -60,9 +60,28 @@
     <string name="cancel">रद्द गर्नुहोस्</string>
     <string msgid="406453423630273620" name="close_drawer">"नेभिगेसन मेनु बन्द गर्नुहोस्"</string>
     <string msgid="7573152094250666567" name="close_sheet">"पाना बन्द गर्नुहोस्"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">सक्रिय गर्नुहोस्</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$s ले तपाईँले Google Play सेवाहरू सक्षम नगरेसम्म काम गर्दैन।</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play सेवाहरू सक्षम पार्नुहोस्</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">स्थापना गर्नुहोस्</string>
+    <string name="common_google_play_services_install_text">%1$s Google Play services बिना सञ्चालन हुने छैन र तपाईँको यन्त्रमा Google Play services उपलब्ध छैनन्।</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play सेवाहरू प्राप्त गर्नुहोस्</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play सेवाको उपलब्धता</string>
+    <string name="common_google_play_services_notification_ticker">Google Play सेवाहरूका त्रुटि</string>
+    <string name="common_google_play_services_unknown_issue">%1$s लाई Google Play services सँग सहकार्य गर्न समस्या भइरहेको छ। कृपया फेरि प्रयास गर्नुहोस्।</string>
+    <string name="common_google_play_services_unsupported_text">%1$s Google Play services बिना सञ्चालन हुने छैन र तपाईँको यन्त्रले Google Play services लाई समर्थन गर्दैन।</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">अपडेट गर्नुहोस्</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s तपाईंले Google प्ले सेवाहरू अद्यावधिक नगरेसम्म सञ्चालन हुँदैन।</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Google Play सेवाहरू अपडेट गर्नुहोस्</string>
+    <string name="common_google_play_services_updating_text">Google Play सेवाहरू %1$s बिना सञ्‍चालन हुँदैन, जुन हाल अद्यावधिक भइरहेका छन्।</string>
+    <string name="common_google_play_services_wear_update_text">Google Play सेवाहरूको नयाँ संस्करण आवश्यक छ। यो आफै छिट्टै नै अद्यावधिक हुनेछ।</string>
+    <string name="common_open_on_phone">फोनमा खोल्नुहोस्</string>
+    <string name="common_signin_button_text">साइन इन गर्नुहोस्</string>
+    <string name="common_signin_button_text_long">Google मार्फत साइन‍ इन गर्नुहोस्</string>
     <string name="confirm">निश्चित गर्नुहोस्</string>
     <string name="confirm_delete_msg">के तपाईं यो विवरण मेटाउन निश्चित हुनुहुन्छ? यसले तपाईंको खाता मौज्दात पूर्ववत गर्नेछ।</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"पासवर्ड प्रयोग गर्नुहोस्"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"क्लिपबोर्डमा लिंक कपी गरियो"</string>
     <string name="create_budget">बजेट सिर्जना गर्नुहोस्</string>
     <string name="create_savings_goal">नयाँ बचत लक्ष्य</string>
     <string name="currency_settings">पूर्वनिर्धारित मुद्रा</string>
@@ -87,6 +106,9 @@
     <string name="export_pdf">मासिक PDF स्टेटमेन्ट बनाउनुहोस्</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"जारी राख्न आफ्नो फेस वा स्क्रिन लक प्रयोग गरी पुष्टि गर्नुहोस्"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"जारी राख्न आफ्नो फेस प्रयोग गरी पुष्टि गर्नुहोस्"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"लिंक प्रतिलिपि गर्नुहोस्"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ब्राउजरमा खोल्नुहोस्"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"लिंक सेयर गर्नुहोस्"</string>
     <string name="filter_custom">अनुकूल मिति</string>
     <string name="filter_last_month">अघिल्लो महिना</string>
     <string name="filter_this_month">यो महिना</string>
@@ -173,6 +195,9 @@
     <string name="money_i_owe">मैले तिर्नुपर्ने (दायित्व)</string>
     <string name="money_owed_to_me">मैले पाउनुपर्ने (सम्पत्ति)</string>
     <string name="monthly_budget">मासिक बजेट</string>
+    <string name="native_body">मुख्य भाग</string>
+    <string name="native_headline">शीर्षक</string>
+    <string name="native_media_view">मिडिया दृश्य</string>
     <string name="nav_accounts">खाताहरू</string>
     <string name="nav_audit">लेखा परीक्षण</string>
     <string name="nav_budgets">बजेट</string>
@@ -194,6 +219,17 @@
     <string name="net_worth_formula">कुल वास्तविक सम्पत्ति = कुल सम्पत्ति - कुल दायित्व</string>
     <string name="no_insights">बुद्धिमानी वित्तीय सुझावहरू प्राप्त गर्न कारोबारहरू थप्दै जानुहोस्।</string>
     <string msgid="6610465462668679431" name="not_selected">"चयन गरिएको छैन"</string>
+    <string name="notifications_permission_confirm">अनुमति दिनुहोस्</string>
+    <string name="notifications_permission_decline">अनुमति नदिनुहोस्</string>
+    <string name="notifications_permission_title">यो एपलाई तपाईंलाई सूचनाहरू पठाउने अनुमति दिने हो?</string>
+    <string name="offline_dialog_image_description">आइकन</string>
+    <string name="offline_dialog_text">रुचि देखाउनुभएकोमा धन्यवाद।\nतपाईं फेरी अनलाइन आएपछि हामी थप जानकारी सेयर गर्ने छौँ।</string>
+    <string name="offline_notification_title">तपाईं फेरि अनलाइन हुनुभयो! हामीले छोडेकै ठाउँबाट सुरु गरौँ</string>
+    <string name="offline_notification_title_with_advertiser">तपाईं फेरि अनलाइन हुनुभयो! %s का बारेमा पढ्न जारी राख्नुहोस्</string>
+    <string name="offline_opt_in_confirm">ठिक छ</string>
+    <string name="offline_opt_in_decline">पर्दैन, धन्यवाद</string>
+    <string name="offline_opt_in_message">हामी तपाईंलाई विज्ञापनदाताको साइटको लिंकसहित एउटा सूचना पठाउने छौँ।</string>
+    <string name="offline_opt_in_title">फेरि अनलाइन हुँदा विज्ञापन खोल्नुहोस्।</string>
     <string name="opening_balance">सुरुवाती मौज्दात</string>
     <string name="outstanding_balance">बाँकी रकम</string>
     <string name="outstanding_debts">बाँकी ऋण</string>
@@ -208,6 +244,13 @@
     <string name="record_payment">भुक्तानी रेकर्ड गर्नुहोस्</string>
     <string name="remaining_budget">बाँकी रकम</string>
     <string name="restore_database">ब्याकअपबाट पुनर्स्थापना गर्नुहोस्</string>
+    <string name="s1">छविलाई सेभ गर्नुहोस्</string>
+    <string name="s2">विज्ञापनलाई तस्बिरको ग्यालरीमा फोटो भण्डारण गर्न अनुमति दिने हो?</string>
+    <string name="s3">स्वीकार गर्नुहोस्</string>
+    <string name="s4">अस्वीकार गर्नुहोस्</string>
+    <string name="s5">पात्रोमा कार्यक्रम सिर्जना गर्नुहोस्</string>
+    <string name="s6">विज्ञापनलाई पात्रोमा कार्यक्रम सिर्जना गर्न अनुमति दिने हो?</string>
+    <string name="s7">परीक्षण विज्ञापन</string>
     <string name="save">सुरक्षित गर्नुहोस्</string>
     <string name="save_transaction">कारोबार सुरक्षित गर्नुहोस्</string>
     <string name="saved_amount">जम्मा रकम</string>
@@ -259,4 +302,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"फिंगरप्रिन्ट प्रयोग गरी पुष्टि गर्नुहोस्"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"फिंगरप्रिन्ट वा स्क्रिन लक प्रयोग गरी पुष्टि गर्नुहोस्"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"स्क्रिन लक प्रयोग गरी पुष्टि गर्नुहोस्"</string>
+    <string name="watermark_label_prefix">AdMob - </string>
 </resources>

@@ -23,6 +23,9 @@ interface CategoryDao {
     @Query("SELECT COUNT(*) FROM categories")
     suspend fun getCategoriesCount(): Int
 
+    @Query("SELECT * FROM categories")
+    suspend fun getAllCategoriesDirect(): List<CategoryEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategory(category: CategoryEntity): Long
 

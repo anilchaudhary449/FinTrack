@@ -59,6 +59,10 @@ class TransactionRepositoryImpl @Inject constructor(
         return transactionDao.getTransactionWithDetailsById(id)?.toDomain()
     }
 
+    override fun observeTransactionById(id: Long): Flow<Transaction?> {
+        return transactionDao.getTransactionWithDetailsByIdFlow(id).map { it?.toDomain() }
+    }
+
     override fun searchTransactions(query: String): Flow<List<Transaction>> {
         return transactionDao.searchTransactionsFlow(query).map { list ->
             list.map { it.toDomain() }
@@ -199,11 +203,13 @@ class TransactionRepositoryImpl @Inject constructor(
             TransactionType.DEBT_LENT,
             TransactionType.DEBT_REPAYMENT_MADE,
             TransactionType.SAVINGS_CONTRIBUTION -> {
+                requireSufficientFunds(account.currentBalance, tx.amount, account.currency)
                 val newBal = account.currentBalance.subtract(tx.amount)
                 accountDao.updateAccountBalance(account.id, newBal)
             }
             TransactionType.TRANSFER -> {
                 // Deduct from source
+                requireSufficientFunds(account.currentBalance, tx.amount, account.currency)
                 val sourceNewBal = account.currentBalance.subtract(tx.amount)
                 accountDao.updateAccountBalance(account.id, sourceNewBal)
 
@@ -220,6 +226,14 @@ class TransactionRepositoryImpl @Inject constructor(
                 val newBal = account.currentBalance.add(tx.amount)
                 accountDao.updateAccountBalance(account.id, newBal)
             }
+        }
+    }
+
+    private fun requireSufficientFunds(balance: BigDecimal, requested: BigDecimal, currency: String) {
+        if (requested > balance) {
+            throw IllegalStateException(
+                "Insufficient funds: available ${balance.toPlainString()} $currency, requested ${requested.toPlainString()} $currency."
+            )
         }
     }
 

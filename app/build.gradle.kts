@@ -14,17 +14,25 @@ val releaseKeystoreProperties = Properties().apply {
         releaseKeystorePropertiesFile.inputStream().use(::load)
     }
 }
+val admobAppId = providers.gradleProperty("ADMOB_APP_ID")
+    .orElse("ca-app-pub-3940256099942544~3347511713")
+    .get()
+val admobBannerId = providers.gradleProperty("ADMOB_BANNER_ID")
+    .orElse("ca-app-pub-3940256099942544/6300978111")
+    .get()
 
 android {
     namespace = "com.fintrack.android"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.fintrack.android"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
+        manifestPlaceholders["admobAppId"] = admobAppId
+        buildConfigField("String", "ADMOB_BANNER_ID", "\"$admobBannerId\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -136,6 +144,8 @@ dependencies {
     // Image loading & Biometrics
     implementation(libs.coil.compose)
     implementation(libs.androidx.biometric)
+    implementation(libs.google.mobile.ads)
+    implementation(libs.google.ump)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)

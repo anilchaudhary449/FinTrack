@@ -1,5 +1,6 @@
 package com.fintrack.android.ui.screens.settings
 
+import androidx.biometric.BiometricManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -30,6 +31,10 @@ fun SettingsScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
+    var showPinDialog by remember { mutableStateOf(false) }
+    var pinValue by remember { mutableStateOf("") }
+    var pinConfirmation by remember { mutableStateOf("") }
+    var securityMessage by remember { mutableStateOf<String?>(null) }
 
     Scaffold(
         topBar = {
@@ -44,16 +49,24 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // Notification Messages
-            if (state.backupSuccessMessage != null) {
+            if (state.backupSuccessMessage != null || state.errorMessage != null) {
                 item {
                     Surface(
                         shape = MaterialTheme.shapes.medium,
-                        color = IncomeGreen.copy(alpha = 0.15f),
+                        color = if (state.errorMessage != null) {
+                            MaterialTheme.colorScheme.errorContainer
+                        } else {
+                            IncomeGreen.copy(alpha = 0.15f)
+                        },
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = state.backupSuccessMessage!!,
-                            color = IncomeGreen,
+                            text = state.errorMessage ?: state.backupSuccessMessage.orEmpty(),
+                            color = if (state.errorMessage != null) {
+                                MaterialTheme.colorScheme.onErrorContainer
+                            } else {
+                                IncomeGreen
+                            },
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(14.dp)
                         )
@@ -184,7 +197,40 @@ fun SettingsScreen(
                         }
                         Switch(
                             checked = state.preferences.isBiometricEnabled,
-                            onCheckedChange = { viewModel.onBiometricToggle(it) }
+                            onCheckedChange = { enabled ->
+                                if (!enabled) {
+                                    viewModel.onBiometricToggle(false)
+                                } else {
+                                    val authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG or
+                                            BiometricManager.Authenticators.DEVICE_CREDENTIAL
+                                    if (BiometricManager.from(context).canAuthenticate(authenticators) ==
+                                        BiometricManager.BIOMETRIC_SUCCESS
+                                    ) {
+                                        viewModel.onBiometricToggle(true)
+                                        securityMessage = null
+                                    } else {
+                                        securityMessage = "Set up a screen lock or enroll biometrics in Android Settings first."
+                                    }
+                                }
+                            }
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = { showPinDialog = true }) {
+                            Text(if (state.preferences.isPinEnabled) "Change PIN" else "Set PIN")
+                        }
+                        if (state.preferences.isPinEnabled) {
+                            TextButton(onClick = { viewModel.removePin() }) {
+                                Text("Remove PIN")
+                            }
+                        }
+                    }
+                    (securityMessage ?: state.errorMessage)?.let { message ->
+                        Text(
+                            text = message,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error
                         )
                     }
                 }
@@ -220,6 +266,48 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+
+    if (showPinDialog) {
+        AlertDialog(
+            onDismissRequest = { showPinDialog = false },
+            title = { Text(if (state.preferences.isPinEnabled) "Change app PIN" else "Set app PIN") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(
+                        value = pinValue,
+                        onValueChange = { pinValue = it.filter(Char::isDigit).take(8) },
+                        label = { Text("4 to 8 digit PIN") },
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                            keyboardType = androidx.compose.ui.text.input.KeyboardType.NumberPassword
+                        ),
+                        singleLine = true
+                    )
+                    OutlinedTextField(
+                        value = pinConfirmation,
+                        onValueChange = { pinConfirmation = it.filter(Char::isDigit).take(8) },
+                        label = { Text("Confirm PIN") },
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                            keyboardType = androidx.compose.ui.text.input.KeyboardType.NumberPassword
+                        ),
+                        singleLine = true
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.savePin(pinValue, pinConfirmation)
+                    if (pinValue == pinConfirmation && pinValue.length in 4..8) {
+                        pinValue = ""
+                        pinConfirmation = ""
+                        showPinDialog = false
+                    }
+                }) { Text("Save PIN") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showPinDialog = false }) { Text("Cancel") }
+            }
+        )
     }
 }
 

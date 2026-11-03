@@ -38,13 +38,35 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Bejövő hívás szűrése"</string>
     <string msgid="406453423630273620" name="close_drawer">"Navigációs menü bezárása"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Munkalap bezárása"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Engedélyezés</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">A(z) %1$s alkalmazás csak akkor működik, ha  engedélyezi a Google Play-szolgáltatásokat.</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play-szolgáltatások engedélyezése</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">Telepítés</string>
+    <string name="common_google_play_services_install_text">A(z) %1$s alkalmazás nem fut a Google Play-szolgáltatások nélkül, amelyek hiányoznak az eszközről.</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">A Google Play-szolgáltatások beszerzése</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play-szolgáltatások elérhetősége</string>
+    <string name="common_google_play_services_notification_ticker">Google Play-szolgáltatások – hiba</string>
+    <string name="common_google_play_services_unknown_issue">A(z) %1$s alkalmazás problémába ütközött a Google Play-szolgáltatások használata során. Próbálkozzon újra.</string>
+    <string name="common_google_play_services_unsupported_text">A(z) %1$s alkalmazás nem fut a Google Play-szolgáltatások nélkül, amelyeket eszköze nem támogat.</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">Frissítés</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">A(z) %1$s alkalmazás csak akkor fog működni, ha frissíti a Google Play-szolgáltatásokat.</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">A Google Play-szolgáltatások frissítése</string>
+    <string name="common_google_play_services_updating_text">A(z) %1$s alkalmazás nem fut a Google Play-szolgáltatások nélkül, amelyek frissítése folyamatban van.</string>
+    <string name="common_google_play_services_wear_update_text">A Google Play-szolgáltatások új verziójára van szükség. A szolgáltatás hamarosan frissíti önmagát.</string>
+    <string name="common_open_on_phone">Megnyitás a telefonon</string>
+    <string name="common_signin_button_text">Bejelentkezés</string>
+    <string name="common_signin_button_text_long">Bejelentkezés Google-fiókkal</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"Jelszó használata"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link vágólapra másolva"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Érvénytelen adat"</string>
     <string msgid="4776854077120974966" name="default_error_msg">"Ismeretlen hiba"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Előugró ablak"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Legördülő menü"</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"A folytatás arcalapú feloldással vagy a képernyőzár feloldásával lehetséges"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"A folytatáshoz használja az arcalapú feloldást"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Link másolása"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Megnyitás böngészőben"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Link megosztása"</string>
     <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Ujjlenyomat ikon"</string>
     <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Érintse meg az ujjlenyomat-érzékelőt"</string>
     <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Az ujjlenyomathoz szükséges hardverhez nem lehet hozzáférni."</string>
@@ -117,10 +139,31 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"du."</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Elemleírás megjelenítése"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Elemleírás"</string>
+    <string name="native_body">Törzs</string>
+    <string name="native_headline">Címsor</string>
+    <string name="native_media_view">Médianézet</string>
     <string msgid="542007171693138492" name="navigation_menu">"Navigációs menü"</string>
     <string msgid="6610465462668679431" name="not_selected">"Nincs kijelölve"</string>
+    <string name="notifications_permission_confirm">Engedélyezés</string>
+    <string name="notifications_permission_decline">Tiltás</string>
+    <string name="notifications_permission_title">Engedélyezi, hogy az alkalmazás értesítéseket küldjön Önnek?</string>
+    <string name="offline_dialog_image_description">Ikon</string>
+    <string name="offline_dialog_text">Köszönjük érdeklődését!\nAmint újra online lesz, bővebb tájékoztatást fog kapni.</string>
+    <string name="offline_notification_title">Újra van internetkapcsolata. Folytassuk onnan, ahol abbahagytuk.</string>
+    <string name="offline_notification_title_with_advertiser">Újra van internetkapcsolata. Ismerje meg részletesebben a következőt: %s.</string>
+    <string name="offline_opt_in_confirm">OK</string>
+    <string name="offline_opt_in_decline">Nem</string>
+    <string name="offline_opt_in_message">Értesítést küldünk, amelyben a hirdető webhelyére mutató link szerepel.</string>
+    <string name="offline_opt_in_title">Megnyithatja a hirdetést akkor, amikor újra online lesz.</string>
     <string msgid="5941395253238309765" name="range_end">"Tartomány vége"</string>
     <string msgid="7097486360902471446" name="range_start">"Tartomány kezdete"</string>
+    <string name="s1">Kép mentése</string>
+    <string name="s2">Engedélyezi a hirdetés számára a kép tárolását a Képgalériában?</string>
+    <string name="s3">Elfogadás</string>
+    <string name="s4">Elutasítás</string>
+    <string name="s5">Naptáresemény létrehozása</string>
+    <string name="s6">Engedélyezi a hirdetés számára naptáresemény létrehozását?</string>
+    <string name="s7">Teszthirdetés</string>
     <string msgid="5659570757430909869" name="screen_lock_prompt_message">"A folytatáshoz adja meg a képernyőzár hitelesítési adatait"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Keresés"</string>
     <string msgid="6043586758067023" name="selected">"Kijelölve"</string>
@@ -140,4 +183,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"Ujjlenyomat használata"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Ujjlenyomat vagy képernyőzár használata"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"Képernyőzár használata"</string>
+    <string name="watermark_label_prefix">AdMob – </string>
 </resources>

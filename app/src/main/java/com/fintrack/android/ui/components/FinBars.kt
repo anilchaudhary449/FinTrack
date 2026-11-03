@@ -16,15 +16,20 @@ import androidx.compose.ui.unit.dp
 fun FinTopBar(
     title: String,
     onNavigateBack: (() -> Unit)? = null,
+    titleContent: (@Composable () -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
         title = {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold
-            )
+            if (titleContent != null) {
+                titleContent()
+            } else {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         },
         navigationIcon = {
             if (onNavigateBack != null) {

@@ -10,9 +10,11 @@ import com.fintrack.android.domain.model.TransactionType
 import com.fintrack.android.domain.repository.AccountRepository
 import com.fintrack.android.domain.repository.CategoryRepository
 import com.fintrack.android.domain.repository.TransactionRepository
+import com.fintrack.android.domain.util.CurrencyFormatter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 private data class TxFilterState(
@@ -43,62 +45,45 @@ class TransactionListViewModel @Inject constructor(
     private val preferencesManager: UserPreferencesManager
 ) : ViewModel() {
 
-    private val _searchQuery = MutableStateFlow("")
-    private val _selectedType = MutableStateFlow<TransactionType?>(null)
-    private val _selectedAccountId = MutableStateFlow<Long?>(null)
-    private val _selectedCategoryId = MutableStateFlow<Long?>(null)
+    private val _filters = MutableStateFlow(TxFilterState("", null, null, null))
 
     val uiState: StateFlow<TransactionListUiState> = combine(
-        _searchQuery,
-        _selectedType,
-        _selectedAccountId,
-        _selectedCategoryId
-    ) { query, type, accountId, categoryId ->
-        TxFilterState(query, type, accountId, categoryId)
-    }.flatMapLatest { filters ->
-        combine(
-            transactionRepository.getAllTransactions(),
-            accountRepository.getAllAccounts(),
-            categoryRepository.getAllCategories(),
-            preferencesManager.userPreferencesFlow
-        ) { txs, accounts, categories, prefs ->
-            var filtered = txs
-
-            if (filters.query.isNotBlank()) {
-                filtered = filtered.filter {
-                    it.notes.contains(filters.query, ignoreCase = true) ||
-                            it.categoryName.contains(filters.query, ignoreCase = true) ||
-                            it.accountName.contains(filters.query, ignoreCase = true) ||
-                            it.amount.toPlainString().contains(filters.query)
-                }
-            }
-
-            if (filters.type != null) {
-                filtered = filtered.filter { it.type == filters.type }
-            }
-
-            if (filters.accountId != null) {
-                filtered = filtered.filter {
-                    it.accountId == filters.accountId || it.toAccountId == filters.accountId
-                }
-            }
-
-            if (filters.categoryId != null) {
-                filtered = filtered.filter { it.categoryId == filters.categoryId }
-            }
-
-            TransactionListUiState(
-                transactions = filtered,
-                accounts = accounts,
-                categories = categories,
-                searchQuery = filters.query,
-                selectedType = filters.type,
-                selectedAccountId = filters.accountId,
-                selectedCategoryId = filters.categoryId,
-                defaultCurrency = prefs.defaultCurrency,
-                isBikramSambatEnabled = prefs.isBikramSambatEnabled
-            )
+        _filters,
+        transactionRepository.getAllTransactions(),
+        accountRepository.getAllAccounts(),
+        categoryRepository.getAllCategories(),
+        preferencesManager.userPreferencesFlow
+    ) { filters, txs, accounts, categories, prefs ->
+        val query = normalizeSearchText(filters.query)
+        val filtered = txs.filter { transaction ->
+            val matchesQuery = query.isEmpty() || listOf(
+                transaction.notes,
+                transaction.categoryName,
+                transaction.accountName,
+                transaction.paymentMethod.displayName,
+                transaction.type.name,
+                transaction.currency,
+                transaction.amount.toPlainString(),
+                CurrencyFormatter.format(transaction.amount, transaction.currency, includeSymbol = false)
+            ).any { normalizeSearchText(it).contains(query) }
+            val matchesType = filters.type == null || transaction.type == filters.type
+            val matchesAccount = filters.accountId == null ||
+                    transaction.accountId == filters.accountId || transaction.toAccountId == filters.accountId
+            val matchesCategory = filters.categoryId == null || transaction.categoryId == filters.categoryId
+            matchesQuery && matchesType && matchesAccount && matchesCategory
         }
+
+        TransactionListUiState(
+            transactions = filtered,
+            accounts = accounts,
+            categories = categories,
+            searchQuery = filters.query,
+            selectedType = filters.type,
+            selectedAccountId = filters.accountId,
+            selectedCategoryId = filters.categoryId,
+            defaultCurrency = prefs.defaultCurrency,
+            isBikramSambatEnabled = prefs.isBikramSambatEnabled
+        )
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
@@ -106,19 +91,19 @@ class TransactionListViewModel @Inject constructor(
     )
 
     fun onSearchQueryChange(query: String) {
-        _searchQuery.value = query
+        _filters.update { it.copy(query = query) }
     }
 
     fun onTypeFilterChange(type: TransactionType?) {
-        _selectedType.value = type
+        _filters.update { it.copy(type = type) }
     }
 
     fun onAccountFilterChange(accountId: Long?) {
-        _selectedAccountId.value = accountId
+        _filters.update { it.copy(accountId = accountId) }
     }
 
     fun onCategoryFilterChange(categoryId: Long?) {
-        _selectedCategoryId.value = categoryId
+        _filters.update { it.copy(categoryId = categoryId) }
     }
 
     fun deleteTransaction(id: Long) {
@@ -126,5 +111,8 @@ class TransactionListViewModel @Inject constructor(
             transactionRepository.deleteTransaction(id)
         }
     }
+
+    private fun normalizeSearchText(value: String): String =
+        value.trim().replace(",", "").lowercase(Locale.ROOT)
 }
 

@@ -29,6 +29,7 @@ interface TransactionRepository {
     fun getTransactionsForAccount(accountId: Long): Flow<List<Transaction>>
     fun getTransactionsForCategory(categoryId: Long): Flow<List<Transaction>>
     suspend fun getTransactionById(id: Long): Transaction?
+    fun observeTransactionById(id: Long): Flow<Transaction?>
     fun searchTransactions(query: String): Flow<List<Transaction>>
     fun getFilteredTransactions(
         type: TransactionType?,

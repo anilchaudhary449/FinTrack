@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.fintrack.android.app-mergeDebugResources-73:/values-v30/values-v30.xml",
+            "outputFile": "com.fintrack.android.app-mergeDebugResources-81:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\anilb\\.gradle\\caches\\8.9\\transforms\\e945b0eb9e18dd1dbfb185d427b5b9b7\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "D:\\FinTrack-1-gradle-home\\caches\\8.13\\transforms\\87eab87562347504794603338fe26875\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

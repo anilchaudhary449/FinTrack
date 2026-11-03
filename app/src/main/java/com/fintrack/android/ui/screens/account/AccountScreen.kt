@@ -2,7 +2,9 @@ package com.fintrack.android.ui.screens.account
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -64,6 +66,18 @@ fun AccountScreen(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            if (state.successMessage != null || state.errorMessage != null) {
+                item {
+                    val isError = state.errorMessage != null
+                    Text(
+                        text = state.errorMessage ?: state.successMessage.orEmpty(),
+                        modifier = Modifier.fillMaxWidth().padding(8.dp),
+                        color = if (isError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+
             // Total Balance Banner
             item {
                 Surface(
@@ -79,7 +93,7 @@ fun AccountScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = CurrencyFormatter.format(state.totalBalance),
+                            text = CurrencyFormatter.format(state.totalBalance, state.displayCurrency),
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -121,6 +135,7 @@ fun AccountScreen(
     // Add Account Dialog
     if (state.isAddAccountOpen) {
         AddAccountDialog(
+            defaultCurrency = state.displayCurrency,
             onDismiss = { viewModel.closeAddAccount() },
             onConfirm = { name, type, bal, curr, desc ->
                 viewModel.createAccount(name, type, bal, curr, desc)
@@ -209,13 +224,14 @@ private fun AccountCardItem(
 
 @Composable
 private fun AddAccountDialog(
+    defaultCurrency: String,
     onDismiss: () -> Unit,
     onConfirm: (String, AccountType, BigDecimal, String, String) -> Unit
 ) {
     var name by remember { mutableStateOf("") }
     var type by remember { mutableStateOf(AccountType.BANK_ACCOUNT) }
     var balanceStr by remember { mutableStateOf("") }
-    var currency by remember { mutableStateOf("NPR") }
+    var currency by remember(defaultCurrency) { mutableStateOf(defaultCurrency) }
     var desc by remember { mutableStateOf("") }
 
     AlertDialog(
@@ -232,10 +248,23 @@ private fun AddAccountDialog(
                 OutlinedTextField(
                     value = balanceStr,
                     onValueChange = { if (it.isEmpty() || it.matches(Regex("^\\d*\\.?\\d{0,2}\$"))) balanceStr = it },
-                    label = { Text("Opening Balance") },
+                    label = { Text("Opening Balance (${CurrencyFormatter.getSymbol(currency)})") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     singleLine = true
                 )
+                Text("Account currency", style = MaterialTheme.typography.labelLarge)
+                Row(
+                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    listOf("NPR", "USD", "INR", "EUR", "GBP").forEach { code ->
+                        FilterChip(
+                            selected = currency == code,
+                            onClick = { currency = code },
+                            label = { Text(code) }
+                        )
+                    }
+                }
                 OutlinedTextField(
                     value = desc,
                     onValueChange = { desc = it },

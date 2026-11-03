@@ -38,13 +38,35 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"ଏକ ଇନକମିଂ କଲକୁ ସ୍କ୍ରିନ୍ କରୁଛି"</string>
     <string msgid="406453423630273620" name="close_drawer">"ନାଭିଗେସନ୍ ମେନୁ ବନ୍ଦ କରନ୍ତୁ"</string>
     <string msgid="7573152094250666567" name="close_sheet">"ସିଟ୍ ବନ୍ଦ କରନ୍ତୁ"</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">ସକ୍ଷମ କରନ୍ତୁ</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">ଆପଣ Google Play ସେବା ସକ୍ଷମ ନ କରିବା ପର୍ଯ୍ୟନ୍ତ %1$s କାମ କରିବ ନାହିଁ।</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play ସେବାଗୁଡ଼ିକ ସକ୍ଷମ କରନ୍ତୁ</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">ଇନ୍‍ଷ୍ଟଲ୍‍ କରନ୍ତୁ</string>
+    <string name="common_google_play_services_install_text">%1$s ଏହି Google Play ସେବାଗୁଡ଼ିକ ବିନା ଚାଲେ ନାହିଁ, ଏବଂ ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ଡିଭାଇସ୍‌ରେ ନାହିଁ।</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play ସେବାଗୁଡ଼ିକ ପ୍ରାପ୍ତ କରନ୍ତୁ</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play ସେବାଗୁଡ଼ିକର ଉପଲବ୍ଧତା</string>
+    <string name="common_google_play_services_notification_ticker">Google Play ସେବା ସମ୍ପର୍କିତ ସମସ୍ୟା</string>
+    <string name="common_google_play_services_unknown_issue">%1$sର Google Play ସେବା ସହ ଏକ ସମସ୍ୟା ରହିଛି। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।</string>
+    <string name="common_google_play_services_unsupported_text">%1$s ଏହି Google Play ସେବାଗୁଡ଼ିକ ବିନା ଚାଲେ ନାହିଁ, ଏବଂ ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ଡିଭାଇସ୍‌ରେ କାମ କରେ ନାହିଁ।</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">ଅପଡେଟ୍‍ କରନ୍ତୁ</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">ଆପଣ Google Play ସେବା ଅପଡେଟ୍‌ ନ କରିବା ପର୍ଯ୍ୟନ୍ତ %1$s ଚାଲିବ ନାହିଁ।</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Google Play ସେବାଗୁଡ଼ିକ ଅପଡେଟ୍ କରନ୍ତୁ</string>
+    <string name="common_google_play_services_updating_text">Google Play ସେବାଗୁଡ଼ିକ ବିନା %1$s ଚାଲିବ ନାହିଁ, ଯେଉଁଗୁଡ଼ିକ ବର୍ତ୍ତମାନ ଅପଡେଟ୍‌ ହେଉଛି।</string>
+    <string name="common_google_play_services_wear_update_text">Google Play ସେବାଗୁଡ଼ିକର ନୂତନ ଭର୍ସନ୍‌ ଆବଶ୍ୟକ। ଏହା ନିଜକୁ କିଛି ସମୟ ମଧ୍ୟରେ ଅପଡେଟ୍‌ କରିବ।</string>
+    <string name="common_open_on_phone">ଫୋନ୍‌ରେ ଖୋଲନ୍ତୁ</string>
+    <string name="common_signin_button_text">ସାଇନ୍‌-ଇନ୍ କରନ୍ତୁ</string>
+    <string name="common_signin_button_text_long">Google ସହ ସାଇନ୍‌-ଇନ୍ କରନ୍ତୁ</string>
     <string msgid="5912733858573823945" name="confirm_device_credential_password">"ପାସ୍‌ୱାର୍ଡ୍ ବ୍ୟବହାର କରନ୍ତୁ"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"ଲିଙ୍କକୁ କ୍ଲିପ୍‍‍ବୋର୍ଡରେ କପି କରାଯାଇଛି"</string>
     <string msgid="8038256446254964252" name="default_error_message">"ଅବୈଧ ଇନପୁଟ୍"</string>
     <string msgid="4776854077120974966" name="default_error_msg">"ଅଜଣା ତ୍ରୁଟି"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"ପପ୍-ଅପ୍ ୱିଣ୍ଡୋ"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"ଡ୍ରପଡାଉନ ମେନୁ"</string>
     <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"ଜାରି ରଖିବାକୁ ଆପଣଙ୍କ ଫେସ କିମ୍ବା ସ୍କ୍ରିନ ଲକ ବ୍ୟବହାର କରନ୍ତୁ"</string>
     <string msgid="2282389249605674226" name="face_prompt_message">"ଜାରି ରଖିବାକୁ ଆପଣଙ୍କ ଫେସ ବ୍ୟବହାର କରନ୍ତୁ"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"ଲିଙ୍କ୍ କପି କରନ୍ତୁ"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ବ୍ରାଉଜର୍‌ରେ ଖୋଲନ୍ତୁ"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"ଲିଙ୍କ୍ ସେୟାର୍ କରନ୍ତୁ"</string>
     <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"ଟିପଚିହ୍ନ ଆଇକନ୍"</string>
     <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"ଟିପଚିହ୍ନ ସେନସର୍‌କୁ ଛୁଅଁନ୍ତୁ"</string>
     <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"ଟିପଚିହ୍ନ ହାର୍ଡୱେର୍‍ ଉପଲବ୍ଧ ନାହିଁ।"</string>
@@ -117,10 +139,31 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"ଟୁଲଟିପ ଦେଖାନ୍ତୁ"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"ଟୁଲଟିପ"</string>
+    <string name="native_body">ବଡି</string>
+    <string name="native_headline">ହେଡଲାଇନ</string>
+    <string name="native_media_view">ମିଡିଆ ଭ୍ୟୁ</string>
     <string msgid="542007171693138492" name="navigation_menu">"ନାଭିଗେସନ୍ ମେନୁ"</string>
     <string msgid="6610465462668679431" name="not_selected">"ଚୟନ କରାଯାଇନାହିଁ"</string>
+    <string name="notifications_permission_confirm">ଅନୁମତି ଦିଅନ୍ତୁ</string>
+    <string name="notifications_permission_decline">ଅନୁମତି ଦିଅନ୍ତୁ ନାହିଁ</string>
+    <string name="notifications_permission_title">ଆପଣଙ୍କୁ ବିଜ୍ଞପ୍ତି ପଠାଇବାକୁ ଆପକୁ ଅନୁମତି ଦେବେ?</string>
+    <string name="offline_dialog_image_description">ଆଇକନ</string>
+    <string name="offline_dialog_text">ଆପଣଙ୍କ ଆଗ୍ରହ ପାଇଁ ଧନ୍ୟବାଦ।\nଆପଣ ପୁଣି ଅନଲାଇନ ହେବା ପରେ ଆମେ ଆଉ ଥରେ ସେୟାର କରିବୁ।</string>
+    <string name="offline_notification_title">ଆପଣ ପୁଣି ଅନଲାଇନ ହୋଇଛନ୍ତି! ଚାଲନ୍ତୁ ଯେଉଁଠି ଦେଖିବା ଛାଡ଼ିଥିଲେ ସେଠାରୁ ପୁଣି ଆରମ୍ଭ କରିବା</string>
+    <string name="offline_notification_title_with_advertiser">ଆପଣ ପୁଣି ଅନଲାଇନ ହୋଇଛନ୍ତି! %s ବିଷୟରେ ଜାଣିବା ଜାରି ରଖନ୍ତୁ</string>
+    <string name="offline_opt_in_confirm">ଠିକ ଅଛି</string>
+    <string name="offline_opt_in_decline">ନାଁ, ଥାଉ</string>
+    <string name="offline_opt_in_message">ବିଜ୍ଞାପନଦାତାଙ୍କ ସାଇଟର ଏକ ଲିଙ୍କ୍ ସହ ଆମେ ଆପଣଙ୍କୁ ଏକ ବିଜ୍ଞପ୍ତି ପଠାଇବୁ।</string>
+    <string name="offline_opt_in_title">ଆପଣ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ବିଜ୍ଞାପନ ଖୋଲନ୍ତୁ।</string>
     <string msgid="5941395253238309765" name="range_end">"ରେଞ୍ଜ ଶେଷ"</string>
     <string msgid="7097486360902471446" name="range_start">"ରେଞ୍ଜ ଆରମ୍ଭ"</string>
+    <string name="s1">ଇମେଜ୍ ସେଭ୍‌ କରନ୍ତୁ</string>
+    <string name="s2">ପିକ୍‌ଚର୍‌ ଗ୍ୟାଲେରୀରେ ଇମେଜ୍‌ଗୁଡ଼ିକ ଷ୍ଟୋର୍‌ କରିବା ପାଇଁ ବିଜ୍ଞାପନକୁ ଅନୁମତି ଦେବେ?</string>
+    <string name="s3">ଗ୍ରହଣ କରନ୍ତୁ</string>
+    <string name="s4">ପ୍ରତ୍ୟାଖ୍ୟାନ କରନ୍ତୁ</string>
+    <string name="s5">କ୍ୟାଲେଣ୍ଡର୍‌ ଇଭେଣ୍ଟ ତିଆରି କରନ୍ତୁ</string>
+    <string name="s6">ଏକ କ୍ୟାଲେଣ୍ଡର୍ ଇଭେଣ୍ଟ ତିଆରି କରିବା ପାଇଁ ବିଜ୍ଞାପନକୁ ଅନୁମତି ଦେବେ କି?</string>
+    <string name="s7">ପରୀକ୍ଷାମୂଳକ ବିଜ୍ଞାପନ</string>
     <string msgid="5659570757430909869" name="screen_lock_prompt_message">"ଜାରି ରଖିବାକୁ ଆପଣଙ୍କ ସ୍କ୍ରିନ ଲକ ଏଣ୍ଟର କରନ୍ତୁ"</string>
     <string msgid="6264217191555673260" name="search_menu_title">"ସନ୍ଧାନ କରନ୍ତୁ"</string>
     <string msgid="6043586758067023" name="selected">"ଚୟନିତ"</string>
@@ -140,4 +183,5 @@
     <string msgid="6961788485681412417" name="use_fingerprint_label">"ଟିପଚିହ୍ନ ବ୍ୟବହାର କରନ୍ତୁ"</string>
     <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"ଟିପଚିହ୍ନ କିମ୍ବା ସ୍କ୍ରିନ ଲକ ବ୍ୟବହାର କରନ୍ତୁ"</string>
     <string msgid="5459869335976243512" name="use_screen_lock_label">"ସ୍କ୍ରିନ ଲକ ବ୍ୟବହାର କରନ୍ତୁ"</string>
+    <string name="watermark_label_prefix">AdMob </string>
 </resources>

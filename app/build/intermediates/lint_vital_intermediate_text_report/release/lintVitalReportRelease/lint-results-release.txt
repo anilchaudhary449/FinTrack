@@ -1,0 +1,16 @@
+D:\FinTrack-1\app\src\main\AndroidManifest.xml:11: Error: Remove androidx.work.WorkManagerInitializer from your AndroidManifest.xml when using on-demand initialization. [RemoveWorkManagerInitializer from androidx.work]
+    <application
+    ^
+
+   Explanation for issues of type "RemoveWorkManagerInitializer":
+   If an android.app.Application implements
+   androidx.work.Configuration.Provider,
+   the default androidx.startup.InitializationProvider needs to be removed
+   from the
+   AndroidManifest.xml file.
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.work
+   Feedback: https://issuetracker.google.com/issues/new?component=409906
+
+1 errors, 0 warnings

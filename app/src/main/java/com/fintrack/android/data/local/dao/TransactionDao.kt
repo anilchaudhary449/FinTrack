@@ -37,6 +37,10 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions WHERE id = :id")
     suspend fun getTransactionWithDetailsById(id: Long): TransactionWithDetails?
 
+    @androidx.room.Transaction
+    @Query("SELECT * FROM transactions WHERE id = :id")
+    fun getTransactionWithDetailsByIdFlow(id: Long): Flow<TransactionWithDetails?>
+
     @Query("SELECT * FROM transactions WHERE id = :id")
     suspend fun getTransactionEntityById(id: Long): TransactionEntity?
 

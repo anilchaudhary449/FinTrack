@@ -16,43 +16,58 @@ class GetDashboardSummaryUseCase @Inject constructor(
     private val transactionRepository: TransactionRepository,
     private val debtRepository: DebtRepository,
     private val budgetRepository: BudgetRepository,
-    private val recurringRepository: RecurringRepository
+    private val recurringRepository: RecurringRepository,
+    private val exchangeRateRepository: ExchangeRateRepository
 ) {
-    operator fun invoke(timeRange: TimeRange, customStart: Long? = null, customEnd: Long? = null): Flow<FinancialSummary> {
+    operator fun invoke(
+        timeRange: TimeRange,
+        customStart: Long? = null,
+        customEnd: Long? = null,
+        targetCurrency: String = "NPR"
+    ): Flow<FinancialSummary> {
         val (startDate, endDate) = resolveDateRange(timeRange, customStart, customEnd)
 
         return combine(
             accountRepository.getAllAccounts(),
             transactionRepository.getTransactionsBetweenDates(startDate, endDate),
             debtRepository.getAllDebts(),
-            recurringRepository.getAllRecurring()
-        ) { accounts, transactions, debts, recurring ->
+            recurringRepository.getAllRecurring(),
+            exchangeRateRepository.snapshot
+        ) { accounts, transactions, debts, recurring, rates ->
+            fun convert(amount: BigDecimal, sourceCurrency: String): BigDecimal =
+                rates?.convert(amount, sourceCurrency, targetCurrency) ?: amount
+
             // 1. Total available balance across active accounts
             val totalBalance = accounts.fold(BigDecimal.ZERO) { acc, account ->
-                acc.add(account.currentBalance)
+                acc.add(convert(account.currentBalance, account.currency))
             }
 
             // 2. Total Income (strictly income transactions, transfers excluded)
             val totalIncome = transactions
                 .filter { it.type == TransactionType.INCOME }
-                .fold(BigDecimal.ZERO) { acc, tx -> acc.add(tx.amount) }
+                .fold(BigDecimal.ZERO) { acc, tx -> acc.add(convert(tx.amount, tx.currency)) }
 
             // 3. Total Expense (strictly expense transactions, transfers excluded)
             val totalExpenses = transactions
                 .filter { it.type == TransactionType.EXPENSE }
-                .fold(BigDecimal.ZERO) { acc, tx -> acc.add(tx.amount) }
+                .fold(BigDecimal.ZERO) { acc, tx -> acc.add(convert(tx.amount, tx.currency)) }
 
             // 4. Net Savings
             val netSavings = totalIncome.subtract(totalExpenses)
 
             // 5. Outstanding Debts
+            val accountCurrencies = accounts.associate { it.id to it.currency }
             val debtsOwedByMe = debts
                 .filter { it.type == DebtType.OWED_BY_ME && it.status != DebtStatus.SETTLED }
-                .fold(BigDecimal.ZERO) { acc, d -> acc.add(d.outstandingAmount) }
+                .fold(BigDecimal.ZERO) { acc, debt ->
+                    acc.add(convert(debt.outstandingAmount, accountCurrencies[debt.accountId] ?: targetCurrency))
+                }
 
             val debtsOwedToMe = debts
                 .filter { it.type == DebtType.OWED_TO_ME && it.status != DebtStatus.SETTLED }
-                .fold(BigDecimal.ZERO) { acc, d -> acc.add(d.outstandingAmount) }
+                .fold(BigDecimal.ZERO) { acc, debt ->
+                    acc.add(convert(debt.outstandingAmount, accountCurrencies[debt.accountId] ?: targetCurrency))
+                }
 
             // 6. Upcoming bills in the next 14 days
             val now = System.currentTimeMillis()

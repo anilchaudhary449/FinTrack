@@ -18,13 +18,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
 import com.fintrack.android.domain.model.CategoryType
 import com.fintrack.android.domain.model.PaymentMethod
 import com.fintrack.android.domain.model.TransactionType
@@ -45,17 +43,18 @@ fun AddEditTransactionScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
+    var showSaveConfirmation by remember { mutableStateOf(false) }
 
     // Photo picker launcher for receipts
     val imagePickerLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
+        contract = ActivityResultContracts.OpenDocument()
     ) { uri: Uri? ->
-        viewModel.onReceiptUriChange(uri?.toString())
+        uri?.let(viewModel::onReceiptSelected)
     }
 
     LaunchedEffect(state.isSaved) {
         if (state.isSaved) {
-            onNavigateBack()
+            showSaveConfirmation = true
         }
     }
 
@@ -142,7 +141,9 @@ fun AddEditTransactionScreen(
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
-                            text = "रु",
+                            text = CurrencyFormatter.getSymbol(
+                                state.accounts.firstOrNull { it.id == state.selectedAccountId }?.currency ?: "NPR"
+                            ),
                             style = MaterialTheme.typography.headlineLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
@@ -284,14 +285,12 @@ fun AddEditTransactionScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 if (state.receiptUri != null) {
                     Box(modifier = Modifier.fillMaxWidth()) {
-                        AsyncImage(
-                            model = state.receiptUri,
-                            contentDescription = "Receipt Image",
+                        ReceiptPreview(
+                            uri = Uri.parse(state.receiptUri),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(160.dp)
-                                .clip(MaterialTheme.shapes.medium),
-                            contentScale = ContentScale.Crop
+                                .clip(MaterialTheme.shapes.medium)
                         )
                         IconButton(
                             onClick = { viewModel.onReceiptUriChange(null) },
@@ -302,7 +301,7 @@ fun AddEditTransactionScreen(
                     }
                 } else {
                     OutlinedButton(
-                        onClick = { imagePickerLauncher.launch("image/*") },
+                        onClick = { imagePickerLauncher.launch(arrayOf("image/*")) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = MaterialTheme.shapes.medium
                     ) {
@@ -328,6 +327,17 @@ fun AddEditTransactionScreen(
                 Text(text = "Save Transaction", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
         }
+    }
+
+    if (showSaveConfirmation) {
+        AlertDialog(
+            onDismissRequest = { onNavigateBack() },
+            title = { Text("Transaction saved") },
+            text = { Text("Your financial record has been updated.") },
+            confirmButton = {
+                TextButton(onClick = onNavigateBack) { Text("Done") }
+            }
+        )
     }
 }
 
